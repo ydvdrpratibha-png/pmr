@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Name | Science Communication Consultant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ── TOKENS ──────────────────────────────────────────── */
+    :root {
+      --ink:    #0d1b2a;
+      --paper:  #f6f3ee;
+      --teal:   #1a6b6b;
+      --teal2:  #24908f;
+      --gold:   #c8973a;
+      --muted:  #7a8a8a;
+      --card:   #ffffff;
+      --border: rgba(26,107,107,.15);
+      --serif:  'Cormorant Garamond', Georgia, serif;
+      --sans:   'DM Sans', sans-serif;
+      --r:      8px;
+    }
+
+    /* ── RESET ───────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin:0; padding:0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans);
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    img { max-width:100%; display:block; }
+    a  { color: inherit; text-decoration:none; }
+
+    /* ── NAV ─────────────────────────────────────────────── */
+    nav {
+      position: fixed; top:0; left:0; right:0; z-index:100;
+      display: flex; align-items:center; justify-content:space-between;
+      padding: 1.1rem 5vw;
+      background: rgba(246,243,238,.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow .3s;
+    }
+    nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,.08); }
+    .nav-brand {
+      font-family: var(--serif);
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--teal);
+      letter-spacing: .02em;
+    }
+    .nav-links { display:flex; gap:2rem; list-style:none; }
+    .nav-links a {
+      font-size: .85rem;
+      font-weight: 500;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--ink);
+      position:relative;
+      padding-bottom: 2px;
+      transition: color .2s;
+    }
+    .nav-links a::after {
+      content:''; position:absolute; bottom:0; left:0;
+      width:0; height:1px;
+      background: var(--gold);
+      transition: width .25s;
+    }
+    .nav-links a:hover { color: var(--teal); }
+    .nav-links a:hover::after { width:100%; }
+    .nav-cta {
+      background: var(--teal);
+      color: #fff !important;
+      padding: .45rem 1.2rem;
+      border-radius: 2rem;
+      font-size:.82rem !important;
+      transition: background .2s !important;
+    }
+    .nav-cta:hover { background: var(--teal2) !important; color:#fff !important; }
+    .nav-cta::after { display:none !important; }
+    .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; }
+    .hamburger span { width:24px; height:2px; background:var(--ink); border-radius:2px; transition:.3s; }
+
+    /* ── HERO ────────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 9rem 5vw 5rem;
+      gap: 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position:absolute; inset:0; z-index:0;
+      background:
+        radial-gradient(ellipse 60% 80% at 80% 50%, rgba(26,107,107,.07) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 10% 80%, rgba(200,151,58,.07) 0%, transparent 60%);
+    }
+    .hero-grid-lines {
+      position:absolute; inset:0; z-index:0;
+      background-image:
+        linear-gradient(rgba(26,107,107,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(26,107,107,.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-text { position:relative; z-index:1; }
+    .hero-eyebrow {
+      display:inline-flex; align-items:center; gap:.6rem;
+      font-size:.75rem; letter-spacing:.14em; text-transform:uppercase;
+      color: var(--gold); font-weight:500; margin-bottom:1.4rem;
+    }
+    .hero-eyebrow::before {
+      content:''; display:block; width:28px; height:1px; background:var(--gold);
+    }
+    .hero-h1 {
+      font-family: var(--serif);
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      font-weight: 300;
+      line-height: 1.12;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+    }
+    .hero-h1 em {
+      font-style: italic;
+      color: var(--teal);
+    }
+    .hero-sub {
+      font-size: 1.02rem;
+      color: var(--muted);
+      max-width: 440px;
+      margin-bottom: 2.2rem;
+      font-weight:300;
+    }
+    .hero-btns { display:flex; gap:1rem; flex-wrap:wrap; }
+    .btn-primary {
+      background: var(--teal);
+      color: #fff;
+      padding: .75rem 2rem;
+      border-radius: 2rem;
+      font-size: .9rem;
+      font-weight: 500;
+      letter-spacing:.03em;
+      transition: background .2s, transform .15s;
+      border: 2px solid var(--teal);
+    }
+    .btn-primary:hover { background: var(--teal2); border-color:var(--teal2); transform:translateY(-2px); }
+    .btn-outline {
+      color: var(--teal);
+      padding: .73rem 2rem;
+      border-radius: 2rem;
+      font-size: .9rem;
+      font-weight: 500;
+      letter-spacing:.03em;
+      border: 2px solid var(--teal);
+      transition: background .2s, color .2s, transform .15s;
+    }
+    .btn-outline:hover { background:var(--teal); color:#fff; transform:translateY(-2px); }
+    .hero-stats {
+      display:flex; gap:2.5rem; margin-top:3rem;
+      padding-top:2rem; border-top:1px solid var(--border);
+    }
+    .stat-num {
+      font-family:var(--serif);
+      font-size:2rem; font-weight:600; color:var(--teal);
+      line-height:1;
+    }
+    .stat-label { font-size:.75rem; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; margin-top:.2rem; }
+    .hero-visual { position:relative; z-index:1; }
+    .hero-card {
+      background: var(--card);
+      border-radius: 1.5rem;
+      padding: 2.5rem;
+      box-shadow: 0 24px 64px rgba(13,27,42,.1);
+      border: 1px solid var(--border);
+      position:relative;
+      overflow:hidden;
+    }
+    .hero-card::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:4px;
+      background: linear-gradient(90deg, var(--teal), var(--gold));
+    }
+    .hcard-tag {
+      display:inline-block;
+      background: rgba(26,107,107,.1);
+      color: var(--teal);
+      font-size:.72rem; letter-spacing:.1em; text-transform:uppercase;
+      padding:.3rem .8rem; border-radius:2rem;
+      margin-bottom:1.2rem;
+    }
+    .hcard-title {
+      font-family:var(--serif);
+      font-size:1.4rem; font-weight:600; color:var(--ink);
+      margin-bottom:.5rem;
+    }
+    .hcard-sub { font-size:.88rem; color:var(--muted); margin-bottom:1.5rem; }
+    .hcard-pills { display:flex; flex-wrap:wrap; gap:.5rem; }
+    .pill {
+      background: var(--paper);
+      border: 1px solid var(--border);
+      color: var(--ink);
+      font-size:.75rem; padding:.3rem .85rem; border-radius:2rem;
+    }
+    .hero-badge {
+      position:absolute; bottom:-1.2rem; right: 2rem;
+      background: var(--gold);
+      color:#fff; border-radius:1rem;
+      padding:.7rem 1.2rem; font-size:.78rem; font-weight:500;
+      box-shadow:0 8px 24px rgba(200,151,58,.35);
+    }
+    .hero-dna {
+      position:absolute; right:-2rem; top:50%; transform:translateY(-50%);
+      opacity:.06; font-size:14rem; font-family:var(--serif); color:var(--teal);
+      pointer-events:none; user-select:none;
+    }
+
+    /* ── SECTION SHELL ───────────────────────────────────── */
+    section { padding: 5.5rem 5vw; }
+    .sec-eyebrow {
+      font-size:.72rem; letter-spacing:.16em; text-transform:uppercase;
+      color: var(--gold); font-weight:500; margin-bottom:.8rem;
+      display:flex; align-items:center; gap:.6rem;
+    }
+    .sec-eyebrow::before { content:''; display:block; width:20px; height:1px; background:var(--gold); }
+    .sec-h2 {
+      font-family:var(--serif);
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight:300; line-height:1.18; color:var(--ink);
+      margin-bottom:1rem;
+    }
+    .sec-h2 em { font-style:italic; color:var(--teal); }
+    .sec-lead { color:var(--muted); max-width:560px; font-size:.97rem; font-weight:300; margin-bottom:3rem; }
+
+    /* ── ABOUT ───────────────────────────────────────────── */
+    #about { background: var(--ink); color: #e8ede9; }
+    #about .sec-h2 { color:#e8ede9; }
+    #about .sec-lead { color: rgba(232,237,233,.65); }
+    #about .sec-eyebrow { color: var(--gold); }
+    #about .sec-eyebrow::before { background: var(--gold); }
+    .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:start; }
+    .about-body { font-size:.97rem; line-height:1.85; color:rgba(232,237,233,.8); }
+    .about-body p + p { margin-top:1.1rem; }
+    .about-body strong { color: var(--gold); font-weight:500; }
+    .timeline { position:relative; padding-left:1.8rem; }
+    .timeline::before {
+      content:''; position:absolute; left:.4rem; top:.5rem; bottom:.5rem;
+      width:1px; background: rgba(26,107,107,.4);
+    }
+    .tl-item { position:relative; margin-bottom:1.8rem; }
+    .tl-dot {
+      position:absolute; left:-1.8rem; top:.4rem;
+      width:10px; height:10px; border-radius:50%;
+      background: var(--teal); border:2px solid var(--ink);
+      box-shadow: 0 0 0 3px rgba(26,107,107,.25);
+    }
+    .tl-year { font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); margin-bottom:.2rem; }
+    .tl-role { font-weight:500; color:#e8ede9; font-size:.95rem; }
+    .tl-org { font-size:.84rem; color:rgba(232,237,233,.55); }
+    .skills-grid { display:grid; grid-template-columns:1fr 1fr; gap:.6rem; margin-top:2rem; }
+    .skill-chip {
+      background: rgba(26,107,107,.15);
+      border:1px solid rgba(26,107,107,.3);
+      color:rgba(232,237,233,.8);
+      font-size:.78rem; padding:.4rem 1rem; border-radius:.5rem;
+      text-align:center;
+    }
+
+    /* ── SERVICES ────────────────────────────────────────── */
+    #services { background:var(--paper); }
+    .services-grid { display:grid; grid-template-columns: repeat(3,1fr); gap:1.8rem; }
+    .svc-card {
+      background:var(--card);
+      border-radius:1.2rem;
+      padding:2.2rem;
+      border:1px solid var(--border);
+      position:relative; overflow:hidden;
+      transition: transform .25s, box-shadow .25s;
+      cursor:default;
+    }
+    .svc-card:hover { transform:translateY(-6px); box-shadow:0 20px 48px rgba(13,27,42,.1); }
+    .svc-card::after {
+      content:''; position:absolute; bottom:0; left:0; right:0; height:3px;
+      background: linear-gradient(90deg, var(--teal), var(--gold));
+      transform: scaleX(0); transform-origin:left;
+      transition: transform .3s;
+    }
+    .svc-card:hover::after { transform:scaleX(1); }
+    .svc-icon {
+      width:52px; height:52px; border-radius:1rem;
+      background: rgba(26,107,107,.1);
+      display:flex; align-items:center; justify-content:center;
+      margin-bottom:1.4rem; font-size:1.5rem;
+    }
+    .svc-title {
+      font-family:var(--serif);
+      font-size:1.4rem; font-weight:600; color:var(--ink);
+      margin-bottom:.5rem;
+    }
+    .svc-desc { font-size:.88rem; color:var(--muted); margin-bottom:1.5rem; line-height:1.65; }
+    .svc-list { list-style:none; display:flex; flex-direction:column; gap:.5rem; }
+    .svc-list li {
+      font-size:.82rem; color:var(--ink);
+      display:flex; align-items:flex-start; gap:.6rem;
+    }
+    .svc-list li::before {
+      content:'→'; color:var(--teal); flex-shrink:0;
+      font-size:.85rem; margin-top:.05rem;
+    }
+
+    /* ── WHY WORK WITH ME ────────────────────────────────── */
+    #why {
+      background: linear-gradient(135deg, #0d1b2a 0%, #12363a 100%);
+      color:#e8ede9;
+    }
+    #why .sec-h2 { color:#e8ede9; }
+    #why .sec-lead { color:rgba(232,237,233,.6); }
+    #why .sec-eyebrow { color:var(--gold); }
+    #why .sec-eyebrow::before { background:var(--gold); }
+    .why-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1.2rem; }
+    .why-card {
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.09);
+      border-radius:1rem; padding:1.8rem;
+      transition: background .25s;
+    }
+    .why-card:hover { background:rgba(255,255,255,.08); }
+    .why-icon { font-size:1.6rem; margin-bottom:.8rem; }
+    .why-title { font-family:var(--serif); font-size:1.15rem; font-weight:600; color:#e8ede9; margin-bottom:.4rem; }
+    .why-desc { font-size:.84rem; color:rgba(232,237,233,.6); line-height:1.65; }
+
+    /* ── BLOG ────────────────────────────────────────────── */
+    #blog { background: var(--paper); }
+    .blog-grid { display:grid; grid-template-columns: 1.4fr 1fr 1fr; gap:1.6rem; }
+    .blog-card {
+      background:var(--card);
+      border-radius:1.2rem;
+      overflow:hidden;
+      border:1px solid var(--border);
+      transition:transform .25s, box-shadow .25s;
+    }
+    .blog-card:hover { transform:translateY(-5px); box-shadow:0 16px 40px rgba(13,27,42,.09); }
+    .blog-img {
+      height:190px;
+      background: linear-gradient(135deg, var(--teal), var(--teal2));
+      display:flex; align-items:center; justify-content:center;
+      font-size:3rem; position:relative; overflow:hidden;
+    }
+    .blog-card:nth-child(1) .blog-img { background:linear-gradient(135deg,#1a6b6b,#24908f); }
+    .blog-card:nth-child(2) .blog-img { background:linear-gradient(135deg,#2d5a72,#3a7a9a); }
+    .blog-card:nth-child(3) .blog-img { background:linear-gradient(135deg,#5a4a2d,#8a7040); }
+    .blog-img-overlay {
+      position:absolute; inset:0;
+      background:rgba(0,0,0,.18);
+    }
+    .blog-body { padding:1.4rem; }
+    .blog-tag {
+      display:inline-block;
+      background:rgba(26,107,107,.1); color:var(--teal);
+      font-size:.68rem; letter-spacing:.1em; text-transform:uppercase;
+      padding:.25rem .7rem; border-radius:2rem; margin-bottom:.8rem;
+    }
+    .blog-title {
+      font-family:var(--serif);
+      font-size:1.1rem; font-weight:600; color:var(--ink);
+      margin-bottom:.5rem; line-height:1.35;
+    }
+    .blog-excerpt { font-size:.82rem; color:var(--muted); line-height:1.6; margin-bottom:1rem; }
+    .blog-meta { font-size:.73rem; color:var(--muted); display:flex; align-items:center; gap:.6rem; }
+    .blog-meta span::after { content:'·'; margin-left:.6rem; }
+    .blog-meta span:last-child::after { display:none; }
+    .blog-add-notice {
+      margin-top:2rem;
+      padding:1.5rem 2rem;
+      background: rgba(26,107,107,.07);
+      border: 1px dashed rgba(26,107,107,.3);
+      border-radius:1rem;
+      font-size:.88rem; color:var(--muted);
+      text-align:center;
+    }
+    .blog-add-notice strong { color:var(--teal); }
+
+    /* ── CONTACT ─────────────────────────────────────────── */
+    #contact { background:var(--ink); color:#e8ede9; }
+    #contact .sec-h2 { color:#e8ede9; }
+    #contact .sec-lead { color:rgba(232,237,233,.6); }
+    #contact .sec-eyebrow { color:var(--gold); }
+    #contact .sec-eyebrow::before { background:var(--gold); }
+    .contact-wrap { display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:start; }
+    .contact-form { display:flex; flex-direction:column; gap:1rem; }
+    .form-group { display:flex; flex-direction:column; gap:.4rem; }
+    .form-group label { font-size:.78rem; letter-spacing:.08em; text-transform:uppercase; color:rgba(232,237,233,.6); }
+    .form-group input, .form-group textarea, .form-group select {
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:var(--r);
+      padding:.8rem 1rem;
+      color:#e8ede9;
+      font-family:var(--sans); font-size:.9rem;
+      outline:none;
+      transition: border-color .2s;
+    }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+      border-color: var(--teal2);
+    }
+    .form-group textarea { resize:vertical; min-height:110px; }
+    .form-group select option { background:var(--ink); }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+    .contact-info { display:flex; flex-direction:column; gap:1.6rem; }
+    .ci-item { display:flex; align-items:flex-start; gap:1rem; }
+    .ci-icon {
+      width:44px; height:44px; border-radius:.8rem; flex-shrink:0;
+      background:rgba(26,107,107,.25); border:1px solid rgba(26,107,107,.4);
+      display:flex; align-items:center; justify-content:center; font-size:1.1rem;
+    }
+    .ci-label { font-size:.72rem; text-transform:uppercase; letter-spacing:.1em; color:rgba(232,237,233,.45); margin-bottom:.2rem; }
+    .ci-value { font-size:.95rem; color:#e8ede9; }
+    .social-row { display:flex; gap:.8rem; margin-top:.5rem; }
+    .soc-btn {
+      display:flex; align-items:center; gap:.5rem;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:.6rem; padding:.5rem 1rem;
+      font-size:.8rem; color:rgba(232,237,233,.75);
+      transition: background .2s, color .2s;
+    }
+    .soc-btn:hover { background:rgba(26,107,107,.3); color:#e8ede9; }
+    .btn-submit {
+      background: var(--gold);
+      color:#fff;
+      padding:.8rem 2.2rem;
+      border-radius:2rem;
+      border:none; cursor:pointer;
+      font-family:var(--sans); font-size:.9rem; font-weight:500;
+      letter-spacing:.04em;
+      transition: opacity .2s, transform .15s;
+      align-self:flex-start;
+    }
+    .btn-submit:hover { opacity:.88; transform:translateY(-2px); }
+
+    /* ── FOOTER ──────────────────────────────────────────── */
+    footer {
+      background: #080f17;
+      color:rgba(232,237,233,.45);
+      padding:2rem 5vw;
+      display:flex; align-items:center; justify-content:space-between;
+      font-size:.8rem; flex-wrap:wrap; gap:1rem;
+    }
+    .footer-brand { font-family:var(--serif); font-size:1.1rem; color:rgba(232,237,233,.7); }
+    .footer-links { display:flex; gap:1.5rem; }
+    .footer-links a { transition:color .2s; }
+    .footer-links a:hover { color:#e8ede9; }
+
+    /* ── ANIMATIONS ──────────────────────────────────────── */
+    .fade-in {
+      opacity:0; transform:translateY(24px);
+      animation: fadeUp .7s ease forwards;
+    }
+    @keyframes fadeUp {
+      to { opacity:1; transform:translateY(0); }
+    }
+    .fade-in:nth-child(1) { animation-delay:.1s; }
+    .fade-in:nth-child(2) { animation-delay:.2s; }
+    .fade-in:nth-child(3) { animation-delay:.3s; }
+    .fade-in:nth-child(4) { animation-delay:.4s; }
+    .float {
+      animation: float 6s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%,100% { transform:translateY(0); }
+      50%      { transform:translateY(-12px); }
+    }
+
+    /* ── RESPONSIVE ──────────────────────────────────────── */
+    @media (max-width:960px) {
+      #hero    { grid-template-columns:1fr; padding-top:7rem; }
+      .hero-visual { display:none; }
+      .about-grid, .contact-wrap { grid-template-columns:1fr; gap:2.5rem; }
+      .services-grid { grid-template-columns:1fr; }
+      .blog-grid { grid-template-columns:1fr 1fr; }
+      .why-grid { grid-template-columns:1fr; }
+      .skills-grid { grid-template-columns:1fr 1fr 1fr; }
+    }
+    @media (max-width:640px) {
+      .nav-links { display:none; }
+      .nav-links.open { display:flex; flex-direction:column; position:fixed; top:64px; left:0; right:0; background:var(--paper); padding:1.5rem 5vw; border-bottom:1px solid var(--border); gap:1.2rem; }
+      .hamburger { display:flex; }
+      .blog-grid { grid-template-columns:1fr; }
+      .form-row { grid-template-columns:1fr; }
+      .hero-stats { flex-direction:column; gap:1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ───────────────────────────────────────────────── -->
+<nav id="navbar">
+  <a href="#" class="nav-brand">Your Name, PhD</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why">Why Me</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ── HERO ───────────────────────────────────────────────── -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-lines"></div>
+  <div class="hero-text">
+    <div class="hero-eyebrow fade-in">Science Communication Consultant</div>
+    <h1 class="hero-h1 fade-in">
+      Bridging <em>Science</em><br>with the World
+    </h1>
+    <p class="hero-sub fade-in">
+      PhD Biotechnologist & science communicator with global experience across academia, industry, and international research organisations. Helping researchers and organisations communicate, fund, and amplify their science.
+    </p>
+    <div class="hero-btns fade-in">
+      <a href="#services" class="btn-primary">Explore Services</a>
+      <a href="#contact" class="btn-outline">Work With Me</a>
+    </div>
+    <div class="hero-stats fade-in">
+      <div>
+        <div class="stat-num">3+</div>
+        <div class="stat-label">Sectors</div>
+      </div>
+      <div>
+        <div class="stat-num">EU & IN</div>
+        <div class="stat-label">Grant Focus</div>
+      </div>
+      <div>
+        <div class="stat-num">Global</div>
+        <div class="stat-label">Stakeholder Network</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-dna">⌬</div>
+    <div class="hero-card float">
+      <div class="hcard-tag">Current Focus</div>
+      <div class="hcard-title">Science Communication Consultancy</div>
+      <div class="hcard-sub">Empowering researchers, institutions, and companies to tell their scientific story.</div>
+      <div class="hcard-pills">
+        <span class="pill">Grant Writing</span>
+        <span class="pill">Publication Support</span>
+        <span class="pill">Outreach Models</span>
+        <span class="pill">EU Funding</span>
+        <span class="pill">Indian Grants</span>
+        <span class="pill">Stakeholder Engagement</span>
+      </div>
+      <div class="hero-badge">📍 Barcelona, Spain</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ───────────────────────────────────────────────── -->
+<section id="about">
+  <div class="sec-eyebrow">About Me</div>
+  <h2 class="sec-h2">A Journey Across <em>Borders & Disciplines</em></h2>
+  <p class="sec-lead">From the labs of India's top universities to the corridors of international institutions — a professional path built at the intersection of science, strategy, and communication.</p>
+  <div class="about-grid">
+    <div class="about-body">
+      <p>I hold a <strong>PhD in Biotechnology</strong> from a prestigious Indian university, with a strong foundation in life sciences that informs everything I do today. My scientific training gave me the ability to understand complex research deeply — and my career since has been about translating that depth into impact.</p>
+      <p>After my PhD, I joined the <strong>International Relations Office at IIT Bombay</strong> as a Project Manager, where I built bridges between Indian academia and global research partners — coordinating funded projects, managing stakeholder relationships, and learning the mechanics of international scientific collaboration first-hand.</p>
+      <p>My path then led me to <strong>Spain</strong>, where I joined a <strong>SaaS company</strong> driving their business expansion into Asian markets — an experience that sharpened my understanding of cross-cultural communication and commercial strategy. Most recently, I worked at <strong>Frontiers</strong>, a leading scientific publishing company, in the Partnership department, deepening my expertise in scholarly communication and open-access ecosystems.</p>
+      <p>I have engaged with <strong>stakeholders from across the globe</strong> — spanning public research institutions, private enterprise, funding bodies, and policy organisations — in both India and Europe. This unique cross-sector, cross-border perspective is the foundation of my consultancy.</p>
+      <div class="skills-grid">
+        <span class="skill-chip">Life Sciences</span>
+        <span class="skill-chip">Biotechnology</span>
+        <span class="skill-chip">Grant Strategy</span>
+        <span class="skill-chip">EU Funding</span>
+        <span class="skill-chip">Scientific Publishing</span>
+        <span class="skill-chip">Stakeholder Mgmt</span>
+        <span class="skill-chip">Science Writing</span>
+        <span class="skill-chip">International BD</span>
+      </div>
+    </div>
+    <div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-year">Present</div>
+          <div class="tl-role">Science Communication Consultant</div>
+          <div class="tl-org">Independent · Barcelona, Spain</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-year">Recent</div>
+          <div class="tl-role">Partnerships</div>
+          <div class="tl-org">Frontiers · Scientific Publishing</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-year">Previous</div>
+          <div class="tl-role">Business Development – Asia</div>
+          <div class="tl-org">SaaS Company · Spain</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-year">Earlier</div>
+          <div class="tl-role">Project Manager, International Relations</div>
+          <div class="tl-org">IIT Bombay · India</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-year">Foundation</div>
+          <div class="tl-role">PhD in Biotechnology</div>
+          <div class="tl-org">Prestigious Indian University</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICES ────────────────────────────────────────────── -->
+<section id="services">
+  <div class="sec-eyebrow">What I Offer</div>
+  <h2 class="sec-h2">Services Designed for <em>Scientific Impact</em></h2>
+  <p class="sec-lead">From securing funding to amplifying your research in the public sphere — end-to-end science communication support tailored to your goals.</p>
+  <div class="services-grid">
+
+    <div class="svc-card">
+      <div class="svc-icon">📋</div>
+      <div class="svc-title">Grant Writing Support</div>
+      <p class="svc-desc">Specialised assistance in crafting compelling grant proposals to secure funding for scientific research projects. I help you present your ideas effectively to attract the right stakeholders and funding bodies — in both Europe and India.</p>
+      <ul class="svc-list">
+        <li>Shortlisting the right grants to apply for</li>
+        <li>End-to-end grant writing support (EU & Indian projects)</li>
+        <li>Strategic national and international collaboration building</li>
+      </ul>
+    </div>
+
+    <div class="svc-card">
+      <div class="svc-icon">📄</div>
+      <div class="svc-title">Publication Support</div>
+      <p class="svc-desc">Guidance and support in writing, structuring, and submitting scientific publications and scholarly reports. Enhancing the clarity, accessibility, and impact of your research for maximum academic reach.</p>
+      <ul class="svc-list">
+        <li>Scientific journal publications</li>
+        <li>Funding body reports and deliverables</li>
+        <li>Conference papers, posters & presentations</li>
+      </ul>
+    </div>
+
+    <div class="svc-card">
+      <div class="svc-icon">🌐</div>
+      <div class="svc-title">Outreach Models</div>
+      <p class="svc-desc">Developing high-quality scientific communication content for outreach through social media and web channels. Tailored to your target audience, delivering complex ideas in a clear, engaging, and accessible manner.</p>
+      <ul class="svc-list">
+        <li>Consortium and individually funded project outreach</li>
+        <li>Scientific publications for academicians & scholars</li>
+        <li>Blog content and social media strategy</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── WHY WORK WITH ME ────────────────────────────────────── -->
+<section id="why">
+  <div class="sec-eyebrow">Why Work With Me</div>
+  <h2 class="sec-h2">A Unique <em>Cross-Sector Perspective</em></h2>
+  <p class="sec-lead">Very few science communicators bring both deep scientific training and hands-on commercial, academic, and international experience to the table.</p>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon">🎓</div>
+      <div class="why-title">Deep Scientific Grounding</div>
+      <p class="why-desc">A PhD in Biotechnology and a career rooted in life sciences means I understand your research at a fundamental level — not just its surface.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🌏</div>
+      <div class="why-title">Global Stakeholder Experience</div>
+      <p class="why-desc">Having worked with stakeholders across India, Europe, and Asia, I understand how to tailor messaging for different cultural and institutional contexts.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🤝</div>
+      <div class="why-title">Public & Private Sector Know-How</div>
+      <p class="why-desc">My career spans academia (IIT Bombay), SaaS, and scientific publishing — giving me a 360° view of how science moves from lab to market to policy.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🇪🇺</div>
+      <div class="why-title">EU & India Funding Landscape</div>
+      <p class="why-desc">Specialist knowledge of both European (Horizon, ERC) and Indian (DST, DBT, CSIR) funding ecosystems, helping you navigate and succeed in both.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── BLOG ────────────────────────────────────────────────── -->
+<section id="blog">
+  <div class="sec-eyebrow">Latest Thinking</div>
+  <h2 class="sec-h2">From the <em>Blog</em></h2>
+  <p class="sec-lead">Insights on grant writing, science communication, publishing trends, and the art of making research matter beyond academia.</p>
+  <div class="blog-grid">
+
+    <div class="blog-card">
+      <div class="blog-img">🔬<div class="blog-img-overlay"></div></div>
+      <div class="blog-body">
+        <span class="blog-tag">Grant Writing</span>
+        <div class="blog-title">How to Position Your Research for EU Horizon Funding in 2025</div>
+        <p class="blog-excerpt">A practical guide to aligning your project narrative with the priorities of Horizon Europe and writing a proposal that stands out in the review process.</p>
+        <div class="blog-meta">
+          <span>June 2025</span>
+          <span>5 min read</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="blog-card">
+      <div class="blog-img">🧬<div class="blog-img-overlay"></div></div>
+      <div class="blog-body">
+        <span class="blog-tag">Publishing</span>
+        <div class="blog-title">Open Access vs Traditional Publishing: What Researchers Need to Know</div>
+        <p class="blog-excerpt">Navigating the evolving landscape of scientific publishing to maximise reach, compliance with funder mandates, and long-term impact.</p>
+        <div class="blog-meta">
+          <span>May 2025</span>
+          <span>4 min read</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="blog-card">
+      <div class="blog-img">📡<div class="blog-img-overlay"></div></div>
+      <div class="blog-body">
+        <span class="blog-tag">Outreach</span>
+        <div class="blog-title">Science on LinkedIn: Building an Authentic Research Profile</div>
+        <p class="blog-excerpt">Why LinkedIn has become the unexpected hub for science communication — and how researchers can use it to reach funders, collaborators, and the public.</p>
+        <div class="blog-meta">
+          <span>April 2025</span>
+          <span>3 min read</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="blog-add-notice">
+    ✏️ <strong>Add your own posts:</strong> To publish a new blog entry, duplicate one of the <code>&lt;div class="blog-card"&gt;</code> blocks in the HTML and update the title, excerpt, date, and tag. It's that simple.
+  </div>
+</section>
+
+<!-- ── CONTACT ─────────────────────────────────────────────── -->
+<section id="contact">
+  <div class="sec-eyebrow">Let's Talk</div>
+  <h2 class="sec-h2">Start a <em>Conversation</em></h2>
+  <p class="sec-lead">Whether you have a project in mind, a grant deadline approaching, or just want to explore how we might collaborate — I'd love to hear from you.</p>
+  <div class="contact-wrap">
+    <form class="contact-form" onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="fname">First Name</label>
+          <input type="text" id="fname" placeholder="Jane" required />
+        </div>
+        <div class="form-group">
+          <label for="lname">Last Name</label>
+          <input type="text" id="lname" placeholder="Smith" required />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="jane@example.com" required />
+      </div>
+      <div class="form-group">
+        <label for="service">Service of Interest</label>
+        <select id="service">
+          <option value="">Select a service…</option>
+          <option>Grant Writing Support</option>
+          <option>Publication Support</option>
+          <option>Outreach Model</option>
+          <option>General Enquiry</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="msg">Message</label>
+        <textarea id="msg" placeholder="Tell me about your project, funding deadline, or question…" required></textarea>
+      </div>
+      <button type="submit" class="btn-submit">Send Message →</button>
+      <p id="form-success" style="display:none;color:var(--gold);font-size:.88rem;margin-top:.5rem;">✓ Message sent! I'll be in touch soon.</p>
+    </form>
+    <div class="contact-info">
+      <div class="ci-item">
+        <div class="ci-icon">📍</div>
+        <div>
+          <div class="ci-label">Location</div>
+          <div class="ci-value">Barcelona, Spain</div>
+        </div>
+      </div>
+      <div class="ci-item">
+        <div class="ci-icon">✉️</div>
+        <div>
+          <div class="ci-label">Email</div>
+          <!-- ✏️ EDIT: Replace with your real email address -->
+          <div class="ci-value">your.email@example.com</div>
+        </div>
+      </div>
+      <div class="ci-item">
+        <div class="ci-icon">🌐</div>
+        <div>
+          <div class="ci-label">Languages</div>
+          <div class="ci-value">English · Hindi · Marathi</div>
+        </div>
+      </div>
+      <div class="ci-item">
+        <div class="ci-icon">🔗</div>
+        <div>
+          <div class="ci-label">Connect</div>
+          <div class="social-row">
+            <!-- ✏️ EDIT: Replace href="#" with your actual profile URLs -->
+            <a href="#" class="soc-btn">in LinkedIn</a>
+            <a href="#" class="soc-btn">𝕏 Twitter</a>
+            <a href="#" class="soc-btn">🔬 ResearchGate</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ──────────────────────────────────────────────── -->
+<footer>
+  <!-- ✏️ EDIT: Replace "Your Name" with your actual name -->
+  <div class="footer-brand">Your Name, PhD</div>
+  <div>Science Communication Consultant · Barcelona</div>
+  <div class="footer-links">
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#blog">Blog</a>
+    <a href="#contact">Contact</a>
+  </div>
+</footer>
+
+<script>
+  // Nav scroll effect
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 30);
+  });
+
+  // Mobile menu
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+  document.querySelectorAll('#navLinks a').forEach(a => {
+    a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+  });
+
+  // Contact form (demo — wire to Formspree or EmailJS for real submissions)
+  function handleSubmit(e) {
+    e.preventDefault();
+    document.getElementById('form-success').style.display = 'block';
+    e.target.reset();
+    setTimeout(() => document.getElementById('form-success').style.display='none', 5000);
+  }
+
+  // Scroll-triggered fade-in for all sections
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('.svc-card, .why-card, .blog-card, .tl-item, .skill-chip').forEach((el, i) => {
+          el.style.opacity = '0';
+          el.style.transform = 'translateY(20px)';
+          el.style.transition = `opacity .5s ${i*0.07}s, transform .5s ${i*0.07}s`;
+          setTimeout(() => { el.style.opacity='1'; el.style.transform='translateY(0)'; }, 50);
+        });
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('section').forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
