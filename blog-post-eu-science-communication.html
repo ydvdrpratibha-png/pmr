@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>What EU-Funded Projects Are Getting Wrong About Science Communication | Blog</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink:   #0d1b2a;
+      --paper: #f6f3ee;
+      --teal:  #1a6b6b;
+      --teal2: #24908f;
+      --gold:  #c8973a;
+      --muted: #7a8a8a;
+      --card:  #ffffff;
+      --border: rgba(26,107,107,.15);
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans:  'DM Sans', sans-serif;
+    }
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    body {
+      font-family: var(--sans);
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.7;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top:0; z-index:100;
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 1rem 5vw;
+      background: rgba(246,243,238,.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-brand { font-family:var(--serif); font-size:1.2rem; font-weight:600; color:var(--teal); }
+    .nav-back {
+      display:flex; align-items:center; gap:.4rem;
+      font-size:.82rem; color:var(--muted); font-weight:500;
+      letter-spacing:.05em; text-decoration:none;
+      transition: color .2s;
+    }
+    .nav-back:hover { color:var(--teal); }
+
+    /* ── HERO ── */
+    .post-hero {
+      background: var(--ink);
+      padding: 5rem 5vw 4rem;
+      position:relative; overflow:hidden;
+    }
+    .post-hero::before {
+      content:'';
+      position:absolute; inset:0;
+      background:
+        radial-gradient(ellipse 50% 70% at 80% 50%, rgba(26,107,107,.18) 0%, transparent 70%),
+        radial-gradient(ellipse 30% 50% at 5% 90%, rgba(200,151,58,.1) 0%, transparent 60%);
+    }
+    .hero-inner { max-width:780px; margin:0 auto; position:relative; }
+    .post-meta-top {
+      display:flex; align-items:center; gap:1rem;
+      flex-wrap:wrap; margin-bottom:1.8rem;
+    }
+    .post-tag {
+      background: rgba(26,107,107,.3);
+      color: #7ecece;
+      font-size:.7rem; letter-spacing:.12em; text-transform:uppercase;
+      padding:.3rem .9rem; border-radius:2rem; font-weight:500;
+    }
+    .post-date { font-size:.78rem; color:rgba(232,237,233,.45); }
+    .post-read { font-size:.78rem; color:rgba(232,237,233,.45); }
+    .sep { color:rgba(232,237,233,.2); }
+    .post-hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      font-weight: 300;
+      color: #e8ede9;
+      line-height: 1.15;
+      margin-bottom: 1.4rem;
+    }
+    .post-hero h1 em { font-style:italic; color: #7ecece; }
+    .post-subtitle {
+      font-size: 1.05rem;
+      color: rgba(232,237,233,.65);
+      max-width: 640px;
+      font-weight:300;
+      line-height:1.7;
+      margin-bottom: 2.5rem;
+    }
+    .author-row {
+      display:flex; align-items:center; gap:1rem;
+      padding-top:1.8rem;
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+    .author-avatar {
+      width:46px; height:46px; border-radius:50%;
+      background: linear-gradient(135deg, var(--teal), var(--teal2));
+      display:flex; align-items:center; justify-content:center;
+      font-family:var(--serif); font-size:1.1rem; font-weight:600; color:#fff;
+      flex-shrink:0;
+    }
+    .author-name { font-size:.92rem; color:#e8ede9; font-weight:500; }
+    .author-title { font-size:.76rem; color:rgba(232,237,233,.5); margin-top:.1rem; }
+
+    /* ── ARTICLE BODY ── */
+    .post-wrap {
+      max-width:720px;
+      margin: 0 auto;
+      padding: 4rem 5vw 6rem;
+    }
+
+    /* Sections */
+    .section-label {
+      display:inline-flex; align-items:center; gap:.6rem;
+      font-size:.68rem; letter-spacing:.16em; text-transform:uppercase;
+      color: var(--gold); font-weight:500;
+      margin-bottom:.9rem;
+    }
+    .section-label::before {
+      content:''; display:block; width:18px; height:1px; background:var(--gold);
+    }
+    .section-h2 {
+      font-family: var(--serif);
+      font-size: clamp(1.5rem, 2.5vw, 2.1rem);
+      font-weight:400; color:var(--ink);
+      line-height:1.25;
+      margin-bottom:1.3rem;
+    }
+    .section-h2 em { font-style:italic; color:var(--teal); }
+
+    /* Body text */
+    .post-section { margin-bottom:3.5rem; }
+    p {
+      font-size:1rem;
+      color: #2e3d40;
+      line-height:1.85;
+      font-weight:300;
+      margin-bottom:1.2rem;
+    }
+    p:last-child { margin-bottom:0; }
+    strong { color:var(--ink); font-weight:500; }
+
+    /* Pull quote */
+    .pull-quote {
+      margin: 2.5rem 0;
+      padding: 1.8rem 2.2rem;
+      border-left: 3px solid var(--gold);
+      background: rgba(200,151,58,.06);
+      border-radius: 0 .8rem .8rem 0;
+    }
+    .pull-quote p {
+      font-family: var(--serif);
+      font-size:1.25rem; font-style:italic;
+      color:var(--ink); line-height:1.55; margin:0;
+      font-weight:400;
+    }
+    .pull-quote cite {
+      display:block; margin-top:.8rem;
+      font-size:.75rem; color:var(--muted);
+      font-style:normal; letter-spacing:.06em;
+    }
+
+    /* Info box */
+    .info-box {
+      background: rgba(26,107,107,.06);
+      border:1px solid rgba(26,107,107,.18);
+      border-radius:1rem;
+      padding:1.8rem 2rem;
+      margin:2.5rem 0;
+    }
+    .info-box-title {
+      font-size:.72rem; letter-spacing:.12em; text-transform:uppercase;
+      color:var(--teal); font-weight:500; margin-bottom:.8rem;
+    }
+    .info-box p { font-size:.91rem; color:#3a4f50; margin-bottom:.6rem; }
+    .info-box p:last-child { margin-bottom:0; }
+
+    /* Stats row */
+    .stats-row {
+      display:grid; grid-template-columns:repeat(3,1fr); gap:1rem;
+      margin:2.5rem 0;
+    }
+    .stat-card {
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:.9rem;
+      padding:1.3rem 1.2rem;
+      text-align:center;
+    }
+    .stat-n {
+      font-family:var(--serif);
+      font-size:2rem; font-weight:600; color:var(--teal);
+      line-height:1;
+    }
+    .stat-l { font-size:.72rem; color:var(--muted); margin-top:.3rem; text-align:center; }
+
+    /* Divider */
+    .divider {
+      border:none;
+      border-top: 1px solid var(--border);
+      margin: 3rem 0;
+    }
+
+    /* Takeaways */
+    .takeaways {
+      background: var(--ink);
+      border-radius:1.2rem;
+      padding:2.5rem 2.5rem 2rem;
+      margin-top:3rem;
+      position:relative; overflow:hidden;
+    }
+    .takeaways::before {
+      content:'';
+      position:absolute; top:0; left:0; right:0; height:3px;
+      background: linear-gradient(90deg, var(--teal), var(--gold));
+    }
+    .takeaways-title {
+      font-family:var(--serif);
+      font-size:1.5rem; font-weight:400; color:#e8ede9;
+      margin-bottom:.4rem;
+    }
+    .takeaways-sub { font-size:.82rem; color:rgba(232,237,233,.45); margin-bottom:2rem; }
+    .takeaway-item {
+      display:flex; gap:1.2rem; align-items:flex-start;
+      margin-bottom:1.5rem;
+      padding-bottom:1.5rem;
+      border-bottom:1px solid rgba(255,255,255,.07);
+    }
+    .takeaway-item:last-child { margin-bottom:0; padding-bottom:0; border-bottom:none; }
+    .tk-num {
+      font-family:var(--serif);
+      font-size:1.8rem; font-weight:600;
+      color:var(--teal2); line-height:1;
+      flex-shrink:0; width:2.2rem; text-align:right;
+      padding-top:.05rem;
+    }
+    .tk-title { font-size:.92rem; font-weight:500; color:#e8ede9; margin-bottom:.3rem; }
+    .tk-desc { font-size:.83rem; color:rgba(232,237,233,.55); line-height:1.65; margin:0; }
+
+    /* Citation */
+    .citation-box {
+      margin-top:3rem;
+      padding:1.4rem 1.8rem;
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:.9rem;
+      font-size:.78rem; color:var(--muted);
+      line-height:1.65;
+    }
+    .citation-box strong { color:var(--ink); }
+
+    /* ── ACCORDION ── */
+    .accordion { display:flex; flex-direction:column; gap:.75rem; margin-top:1.5rem; }
+    .acc-item {
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      background: var(--card);
+      overflow: hidden;
+      transition: box-shadow .25s;
+    }
+    .acc-item.open { box-shadow: 0 8px 32px rgba(13,27,42,.08); }
+    .acc-trigger {
+      width:100%; background:none; border:none; cursor:pointer;
+      display:flex; align-items:center; justify-content:space-between;
+      gap:1.2rem;
+      padding: 1.4rem 1.6rem;
+      text-align:left;
+      font-family: var(--sans);
+    }
+    .acc-trigger:focus-visible { outline: 2px solid var(--teal); outline-offset:2px; }
+    .acc-left { display:flex; align-items:center; gap:1rem; }
+    .acc-num {
+      font-family: var(--serif);
+      font-size:1.5rem; font-weight:600; color:var(--teal);
+      line-height:1; flex-shrink:0; min-width:1.6rem;
+    }
+    .acc-title {
+      font-size:.97rem; font-weight:500; color:var(--ink);
+      line-height:1.4;
+    }
+    .acc-item.open .acc-title { color: var(--teal); }
+    .acc-icon {
+      width:28px; height:28px; border-radius:50%; flex-shrink:0;
+      background: rgba(26,107,107,.1);
+      display:flex; align-items:center; justify-content:center;
+      transition: background .2s, transform .3s;
+    }
+    .acc-icon svg { width:14px; height:14px; stroke:var(--teal); stroke-width:2.2; fill:none; transition: transform .3s; }
+    .acc-item.open .acc-icon { background: var(--teal); }
+    .acc-item.open .acc-icon svg { stroke:#fff; transform: rotate(180deg); }
+    .acc-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .4s cubic-bezier(.4,0,.2,1);
+    }
+    .acc-body-inner {
+      padding: 0 1.6rem 1.6rem;
+      border-top: 1px solid var(--border);
+      padding-top: 1.4rem;
+    }
+    .acc-body-inner p { font-size:.95rem; color:#2e3d40; line-height:1.85; font-weight:300; margin-bottom:1.1rem; }
+    .acc-body-inner p:last-child { margin-bottom:0; }
+    .acc-body-inner strong { color:var(--ink); font-weight:500; }
+    .acc-body-inner .pull-quote { margin:1.6rem 0; }
+
+    /* Responsive */
+    @media(max-width:600px) {
+      .stats-row { grid-template-columns:1fr 1fr; }
+      .stats-row .stat-card:last-child { grid-column:1/-1; }
+      .post-hero { padding:3.5rem 5vw 3rem; }
+      .pull-quote { padding:1.4rem 1.5rem; }
+      .takeaways { padding:1.8rem 1.5rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <!-- ✏️ Update href to your actual index page -->
+  <a href="index.html" class="nav-brand">Pratibha Yadav, PhD</a>
+  <a href="index.html#blog" class="nav-back">← Back to Blog</a>
+</nav>
+
+<!-- HERO -->
+<div class="post-hero">
+  <div class="hero-inner">
+    <div class="post-meta-top">
+      <span class="post-tag">Science Communication</span>
+      <span class="post-tag">EU Funding</span>
+      <span class="sep">·</span>
+      <span class="post-date">June 2025</span>
+      <span class="sep">·</span>
+      <span class="post-read">8 min read</span>
+    </div>
+    <h1>What EU-Funded Projects Are Getting Wrong About <em>Science Communication</em></h1>
+    <p class="post-subtitle">A new study gives voice to the professionals running communication work packages inside Horizon projects. What they reveal should matter to every researcher, institution, and partner working with European funding.</p>
+    <div class="author-row">
+      <div class="author-avatar">PY</div><!-- ✏️ Replace initials -->
+      <div>
+        <div class="author-name">Pratibha Yadav, PhD</div><!-- ✏️ Replace -->
+        <div class="author-title">Science Communication and Outreach Consultant</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE -->
+<div class="post-wrap">
+
+  <!-- SECTION 1: INTRODUCTION -->
+  <div class="post-section">
+    <div class="section-label">Section 1</div>
+    <h2 class="section-h2">Science Communication in EU Projects: <em>A Conversation We Need to Have</em></h2>
+
+    <p>If you have ever been part of a Horizon 2020 or Horizon Europe project, you will know that communication is not optional. Every funded consortium is legally required to report on how it communicates its work to the world. A dedicated Communication and Dissemination Work Package (C&D WP) sits inside virtually every project structure, with budgets, deliverables, and milestones attached to it.</p>
+
+    <p>Yet despite how embedded science communication has become in the fabric of EU-funded research, we know surprisingly little about what it actually looks like from the inside. What do the professionals running these work packages genuinely experience? What motivates them, frustrates them, and concerns them about the system they operate within?</p>
+
+    <p>A 2026 study published in <em>Public Understanding of Science</em> by Luis Arboledas-Lérida sets out to answer precisely these questions. Through in-depth conversations with 26 professionals directly involved in communicating EU-funded projects, it offers one of the most candid and systematic looks yet at what the research community has begun calling <strong>project-based science communication</strong>or PBSC for short.</p>
+
+    <p>As someone who has worked at the intersection of research, institutional communication, and scientific publishing, across both public and private sectors and across multiple continents, I found this study deeply resonant. The patterns it uncovers are not abstract. They play out in real project meetings, in grant proposal negotiations, and in the daily reality of trying to make science matter to audiences beyond the lab. This blog post is my attempt to unpack its key findings in terms that are useful for the people who most need to hear them: researchers, project managers, university communications teams, and industry partners working within EU-funded consortia.</p>
+  </div>
+
+  <hr class="divider"/>
+
+  <!-- SECTION 2: ABOUT THE STUDY -->
+  <div class="post-section">
+    <div class="section-label">Section 2</div>
+    <h2 class="section-h2">Why This Study Matters, How It Was Done, <em>and Who Was Asked</em></h2>
+
+    <p>The scale of science communication now embedded within EU funding is frankly staggering. Between Horizon 2020 and Horizon Europe alone, over 55,000 projects have been funded. Every single one of them carrying a formal obligation to communicate. That is tens of thousands of communication plans, work packages, deliverables, social media strategies, and public engagement activities running in parallel, year after year, across the European Research Area.</p>
+
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-n">55,000+</div>
+        <div class="stat-l">Projects funded under Horizon 2020 &amp; Horizon Europe</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-n">26</div>
+        <div class="stat-l">PBSC professionals interviewed across 11 countries</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-n">€3.1m</div>
+        <div class="stat-l">Average project funding under Horizon Europe</div>
+      </div>
+    </div>
+
+    <p>And yet, the scholarly conversation around science communication has largely focused on researchers and their communication behaviours, or on the policy frameworks funding agencies use to mandate communication. The partnership professionals tasked with running C&D WPs have remained largely invisible in the literature and this article highlights their prospective to benefit EU projects societal impact.</p>
+
+    <p>This is what makes the study's approach significant. Rather than analysing communication outputs or policy documents, the researcher conducted semi-structured interviews with 26 professionals who have lived this experience from the inside. Participants were drawn from eleven countries — Portugal, Spain, Germany, Poland, Italy, Malta, Lithuania, Cyprus, France, the Netherlands, and the United Kingdom.</p>
+
+    <div class="info-box">
+      <div class="info-box-title">Who participated</div>
+      <p><strong>64%</strong> were science communication managers whose primary focus is running multiple C&D WPs simultaneously.</p>
+      <p><strong>12%</strong> were project communicators embedded within a single research project, often on fixed-term contracts.</p>
+      <p><strong>11.5%</strong> were project managers who also carried communication responsibilities.</p>
+      <p>Interesting Insight: In terms of academic background, participants were roughly split between STEM graduates, communication specialists, and professionals from other fields, reflecting just how diverse the pathways into this work actually are.</p>
+    </div>
+
+    <p>Methodology: Interviews ran between 30 and 60 minutes each and were conducted between March and July 2025. The methodology was rigorous: an iterative thematic coding process was applied to the transcripts, drawing on both existing theoretical frameworks and themes that emerged organically from the conversations themselves.</p>
+
+    <p>Questions answered: What the study is ultimately asking, and what the findings begin to answer is whether the way the European Commission currently structures and incentivises science communication is working in the real world. And whether the professionals closest to it believe it can do better.</p>
+  </div>
+
+  <hr class="divider"/>
+
+  <!-- SECTION 3: OUTCOMES -->
+  <div class="post-section">
+    <div class="section-label">Section 3</div>
+    <h2 class="section-h2">What the Interviews Revealed — <em>and Why It Should Concern All of Us</em></h2>
+
+    <p>The findings of this study are layered, and reading them carefully rewards the effort. Below, I have organised the key outcomes into three threads that I believe matter most for our community. Click any thread to read the full analysis.</p>
+
+    <div class="accordion">
+
+      <!-- Thread 1 -->
+      <div class="acc-item" id="thread1">
+        <button class="acc-trigger" onclick="toggleAcc('thread1')" aria-expanded="false">
+          <div class="acc-left">
+            <span class="acc-num">01</span>
+            <span class="acc-title">The professionals doing this work genuinely believe in it but they are working against structural headwinds.</span>
+          </div>
+          <div class="acc-icon">
+            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <p>When asked about the personal and social value of their work, the participants in this study were largely positive. They described meaningful learning experiences, the satisfaction of working within diverse international consortia, and a real sense of contributing to public understanding of science. They saw their work as helping citizens keep track of how public research funding is being spent, a form of accountability that goes beyond mere compliance.</p>
+            <p>That belief matters. It is what drives quality science communication even when the conditions do not fully support it. But it co-exists with a set of structural frustrations that the study documents in considerable detail.</p>
+            <div class="pull-quote">
+              <p>"The most challenging aspect is definitely engaging the consortium. It's not the external stakeholders, it's the internal part. Most partners are simply not committed to the people managing communication work packages."</p>
+              <cite>— Project-based science communication professional, interviewed in the study</cite>
+            </div>
+            <p>This quote captures a dynamic that will be instantly recognisable to anyone who has worked on a C&D WP. Communication professionals depend on researchers and research partners to supply content, participate in interviews, review outputs, and amplify messaging. But that dependency is asymmetric researchers do not depend on communicators in return. Their scientific deliverables proceed whether or not a blog post gets written or a stakeholder newsletter goes out. The result is a structural imbalance that no amount of good intentions fully resolves.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Thread 2 -->
+      <div class="acc-item" id="thread2">
+        <button class="acc-trigger" onclick="toggleAcc('thread2')" aria-expanded="false">
+          <div class="acc-left">
+            <span class="acc-num">02</span>
+            <span class="acc-title">Funding for communication is adequate on paper but it quietly constrains ambition in practice.</span>
+          </div>
+          <div class="acc-icon">
+            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <p>One of the study's more nuanced findings concerns project budgets. Most participants did not describe funding as a critical problem. Budgets were generally sufficient to deliver what had been promised in the grant proposal. But dig a little deeper and a more complicated picture emerges.</p>
+            <p>The communication activities that EU-funded projects typically deliver websites, social media updates, newsletters, conference participation are those that fit comfortably within the available budget. More innovative and genuinely engaging forms of public communication, such as hands-on events, participatory formats, or <strong>targeted outreach</strong>, tend to fall outside of it. The budget is sufficient for the standard approach. It is not sufficient for the ambitious one.</p>
+            <p>The study also surfaces a practice that deserves serious attention: what the author calls <strong>underbudgeting</strong>. Because grant success is partly determined by how cost-efficient a proposal appears, there is a competitive incentive to promise substantial communication activities while allocating as little budget as possible to deliver them. The people who then inherit those promises are the communication professionals often without having been consulted during the proposal stage at all.</p>
+            <p>For institutions building partnerships with EU consortia, this is a practical warning. If your organisation is being asked to lead or contribute to a C&D WP, scrutinise the budget and the deliverables carefully before the grant agreement is signed. What looks reasonable at proposal stage can become very difficult to deliver in practice.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Thread 3 -->
+      <div class="acc-item" id="thread3">
+        <button class="acc-trigger" onclick="toggleAcc('thread3')" aria-expanded="false">
+          <div class="acc-left">
+            <span class="acc-num">03</span>
+            <span class="acc-title">The system is producing volume but not necessarily impact.</span>
+          </div>
+          <div class="acc-icon">
+            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <p>Perhaps the most thought-provoking section of the study concerns what participants think about science communication in EU-funded projects more broadly not just their own work, but the ecosystem. And here, the candour is striking.</p>
+            <p>Many of the professionals interviewed described the communication outputs of most projects as indistinguishable from one another formulaic, driven by Key Performance Indicators that favour reach over depth, and often disconnected from the audiences they are nominally meant to serve. With thousands of projects competing for public attention simultaneously, the noise level has become a genuine problem. Standing out requires not just skill, but resources and strategic clarity that the current system does not always provide.</p>
+            <p>Participants also raised concerns about the KPI frameworks the European Commission uses to evaluate communication performance. Metrics based on website visits, social media followers, and publication counts create incentives to optimise for those numbers which is not the same as creating genuine public understanding or engagement. The communicators who go beyond this, who take the time to develop tailored and creative approaches, do so largely out of personal commitment rather than because the system rewards them for it.</p>
+            <div class="pull-quote">
+              <p>"There's an oversaturation of projects, all competing for human attention. Making your voice heard takes having done it before, being able to pivot when something is not working, and simply not giving up."</p>
+              <cite>— SC Manager, quoted in the study</cite>
+            </div>
+            <p>The societal implications of this are real. The European Commission's vision for science communication is grounded in democratic accountability helping citizens understand what publicly funded research is doing and why it matters. When communication becomes a compliance exercise rather than a genuine effort at engagement, that vision is not being served. And with the next EU Framework Programme for Research and Innovation currently in development, the timing of this study's publication could not be more deliberate.</p>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /accordion -->
+  </div>
+
+  <hr class="divider"/>
+
+  <!-- TAKEAWAYS -->
+  <div class="takeaways">
+    <div class="takeaways-title">5 Key Takeaways</div>
+    <div class="takeaways-sub">For various participants working within EU-funded consortia</div>
+
+    <div class="takeaway-item">
+      <div class="tk-num">01</div>
+      <div>
+        <div class="tk-title">Communication needs a seat at the proposal table not just in the work package</div>
+        <p class="tk-desc">The budget and scope of a C&D WP is determined during proposal writing, often without meaningful input from communication professionals. Bringing communication expertise into the proposal stage is not a luxury it is how you avoid setting up your team to fail before the project even starts.</p>
+      </div>
+    </div>
+
+    <div class="takeaway-item">
+      <div class="tk-num">02</div>
+      <div>
+        <div class="tk-title">Researcher engagement is a structural problem, not a personality one</div>
+        <p class="tk-desc">The difficulty of getting researchers to contribute to communication activities is not simply about attitudes or priorities. It is baked into how C&D WPs are structured as a separate bundle of tasks, tangentially connected to the core research. Addressing it requires clearer contractual expectations and a cultural shift in how communication is valued within consortia.</p>
+      </div>
+    </div>
+
+    <div class="takeaway-item">
+      <div class="tk-num">03</div>
+      <div>
+        <div class="tk-title">Adequate budget ≠ ambitious communication</div>
+        <p class="tk-desc">Budgets that cover the standard approach such as social media, a website, a few events are not the same as budgets that enable genuinely impactful public engagement and global outreach. If your project aims to move beyond compliance-driven communication, that ambition needs to be reflected in the financial planning from the outset.</p>
+      </div>
+    </div>
+
+    <div class="takeaway-item">
+      <div class="tk-num">04</div>
+      <div>
+        <div class="tk-title">KPIs are shaping communication in ways that undermine its purpose</div>
+        <p class="tk-desc">Measuring success through follower counts and page views pushes communication toward broad reach rather than meaningful engagement. The field needs better evaluation frameworks ones that reward quality, audience relevance, and real-world uptake, not just volume.</p>
+      </div>
+    </div>
+
+    <div class="takeaway-item">
+      <div class="tk-num">05</div>
+      <div>
+        <div class="tk-title">The next Framework Programme is an opportunity if we engage with it now</div>
+        <p class="tk-desc">With the successor to Horizon Europe currently being shaped, this study is a timely reminder that the voices of communication professionals belong in that conversation. The design of future C&D WP requirements, evaluation criteria, and budget frameworks will determine the quality of project-based science communication for the next decade. Now is the moment to contribute to those decisions.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CITATION -->
+  <div class="citation-box">
+    <strong>Original study referenced:</strong><br/>
+    Arboledas-Lérida, L. (2026). The communication of science within the framework of European Union-funded research projects: Exploring practitioners' experiences and perceptions. <em>Public Understanding of Science</em>. https://doi.org/10.1177/09636625261433895
+    <br/><br/>
+    <em>If you are looking for ascience communication and outreach plan for your R & D+i project, feel free to contact me. This blog post is an independent commentary based on the findings of the above publication. All interpretations and opinions expressed are my own.</em>
+  </div>
+
+</div>
+</body>
+</html>
