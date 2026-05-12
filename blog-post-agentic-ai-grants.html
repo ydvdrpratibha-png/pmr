@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>How Agentic AI is Quietly Impacting Academic Research and Grant Funding | Pratibha Yadav</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink:    #0d1b2a;
+      --paper:  #f6f3ee;
+      --teal:   #1a6b6b;
+      --teal2:  #24908f;
+      --gold:   #c8973a;
+      --muted:  #7a8a8a;
+      --card:   #ffffff;
+      --border: rgba(26,107,107,.15);
+      --serif:  'Cormorant Garamond', Georgia, serif;
+      --sans:   'DM Sans', sans-serif;
+    }
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    body { font-family:var(--sans); background:var(--paper); color:var(--ink); line-height:1.7; }
+    a { color:var(--teal); text-decoration:none; }
+    a:hover { text-decoration:underline; }
+
+    /* ── NAV ── */
+    nav {
+      position:sticky; top:0; z-index:100;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:1rem 5vw;
+      background:rgba(246,243,238,.95);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid var(--border);
+    }
+    .nav-brand { font-family:var(--serif); font-size:1.2rem; font-weight:600; color:var(--teal); text-decoration:none; }
+    .nav-back {
+      display:flex; align-items:center; gap:.4rem;
+      font-size:.82rem; color:var(--muted); font-weight:500;
+      letter-spacing:.05em; text-decoration:none;
+      transition:color .2s;
+    }
+    .nav-back:hover { color:var(--teal); text-decoration:none; }
+
+    /* ── HERO ── */
+    .post-hero {
+      background:var(--ink);
+      padding:5rem 5vw 4rem;
+      position:relative; overflow:hidden;
+    }
+    .post-hero::before {
+      content:''; position:absolute; inset:0;
+      background:
+        radial-gradient(ellipse 50% 70% at 80% 50%, rgba(26,107,107,.18) 0%, transparent 70%),
+        radial-gradient(ellipse 30% 50% at 5% 90%, rgba(200,151,58,.1) 0%, transparent 60%);
+    }
+    .hero-inner { max-width:780px; margin:0 auto; position:relative; }
+    .post-meta-top {
+      display:flex; align-items:center; gap:1rem;
+      flex-wrap:wrap; margin-bottom:1.8rem;
+    }
+    .post-tag {
+      background:rgba(26,107,107,.3); color:#7ecece;
+      font-size:.7rem; letter-spacing:.12em; text-transform:uppercase;
+      padding:.3rem .9rem; border-radius:2rem; font-weight:500;
+    }
+    .post-date { font-size:.78rem; color:rgba(232,237,233,.45); }
+    .post-read { font-size:.78rem; color:rgba(232,237,233,.45); }
+    .sep { color:rgba(232,237,233,.2); }
+    .post-hero h1 {
+      font-family:var(--serif);
+      font-size:clamp(2rem,4vw,3.4rem);
+      font-weight:300; color:#e8ede9;
+      line-height:1.15; margin-bottom:1.4rem;
+    }
+    .post-hero h1 em { font-style:italic; color:#7ecece; }
+    .post-subtitle {
+      font-size:1.05rem; color:rgba(232,237,233,.65);
+      max-width:640px; font-weight:300; line-height:1.7;
+      margin-bottom:2.5rem;
+    }
+    .author-row {
+      display:flex; align-items:center; gap:1rem;
+      padding-top:1.8rem;
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+    .author-avatar {
+      width:46px; height:46px; border-radius:50%;
+      background:linear-gradient(135deg,var(--teal),var(--teal2));
+      display:flex; align-items:center; justify-content:center;
+      font-family:var(--serif); font-size:1.1rem; font-weight:600; color:#fff;
+      flex-shrink:0;
+    }
+    .author-name { font-size:.92rem; color:#e8ede9; font-weight:500; }
+    .author-title { font-size:.76rem; color:rgba(232,237,233,.5); margin-top:.1rem; }
+
+    /* ── ARTICLE ── */
+    .post-wrap { max-width:720px; margin:0 auto; padding:4rem 5vw 6rem; }
+
+    .section-label {
+      display:inline-flex; align-items:center; gap:.6rem;
+      font-size:.68rem; letter-spacing:.16em; text-transform:uppercase;
+      color:var(--gold); font-weight:500; margin-bottom:.9rem;
+    }
+    .section-label::before { content:''; display:block; width:18px; height:1px; background:var(--gold); }
+
+    .section-h2 {
+      font-family:var(--serif);
+      font-size:clamp(1.4rem,2.5vw,1.9rem);
+      font-weight:400; color:var(--ink);
+      line-height:1.25; margin-bottom:1.1rem;
+    }
+    .section-h2 em { font-style:italic; color:var(--teal); }
+
+    .post-section { margin-bottom:3rem; }
+
+    p {
+      font-size:1rem; color:#2e3d40;
+      line-height:1.85; font-weight:300;
+      margin-bottom:1.2rem;
+    }
+    p:last-child { margin-bottom:0; }
+    strong { color:var(--ink); font-weight:500; }
+
+    /* Scenario box */
+    .scenario-box {
+      background:rgba(26,107,107,.06);
+      border-left:4px solid var(--teal);
+      border-radius:0 1rem 1rem 0;
+      padding:1.8rem 2rem;
+      margin:1.5rem 0 2rem;
+    }
+    .scenario-box p { font-size:.95rem; font-style:italic; color:#2e3d40; margin-bottom:.8rem; }
+    .scenario-box p:last-child { margin-bottom:0; }
+
+    /* Pull quote */
+    .pull-quote {
+      margin:2.5rem 0;
+      padding:1.8rem 2.2rem;
+      border-left:3px solid var(--gold);
+      background:rgba(200,151,58,.06);
+      border-radius:0 .8rem .8rem 0;
+    }
+    .pull-quote p {
+      font-family:var(--serif);
+      font-size:1.2rem; font-style:italic;
+      color:var(--ink); line-height:1.55; margin:0;
+      font-weight:400;
+    }
+    .pull-quote cite {
+      display:block; margin-top:.8rem;
+      font-size:.75rem; color:var(--muted);
+      font-style:normal; letter-spacing:.06em;
+    }
+
+    /* Stats row */
+    .stats-row {
+      display:grid; grid-template-columns:repeat(4,1fr); gap:1rem;
+      margin:2rem 0;
+    }
+    .stat-card {
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:.9rem;
+      padding:1.2rem 1rem;
+      text-align:center;
+    }
+    .stat-n {
+      font-family:var(--serif);
+      font-size:1.8rem; font-weight:600; color:var(--teal);
+      line-height:1;
+    }
+    .stat-l { font-size:.69rem; color:var(--muted); margin-top:.35rem; line-height:1.4; }
+
+    /* Failure cards */
+    .failure-grid { display:flex; flex-direction:column; gap:.9rem; margin:1.5rem 0; }
+    .failure-card {
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:1rem;
+      padding:1.3rem 1.5rem;
+      display:flex; gap:1rem; align-items:flex-start;
+    }
+    .failure-num {
+      font-family:var(--serif);
+      font-size:1.5rem; font-weight:600; color:var(--gold);
+      line-height:1; flex-shrink:0; min-width:1.8rem;
+    }
+    .failure-title { font-size:.92rem; font-weight:500; color:var(--ink); margin-bottom:.3rem; }
+    .failure-desc { font-size:.85rem; color:var(--muted); line-height:1.6; margin:0; }
+
+    /* CTA mid-article */
+    .mid-cta {
+      background:var(--ink);
+      border-radius:1rem;
+      padding:1.5rem 2rem;
+      margin:2rem 0;
+      text-align:center;
+    }
+    .mid-cta p {
+      font-family:var(--serif);
+      font-size:1.2rem; font-style:italic;
+      color:#e8ede9; margin:0; font-weight:400;
+    }
+
+    /* Requirements list */
+    .req-list { list-style:none; display:flex; flex-direction:column; gap:0; margin:1.2rem 0; }
+    .req-list li {
+      font-size:.9rem; color:#2e3d40; line-height:1.75;
+      text-align:justify;
+      padding:.75rem 0;
+      border-bottom:1px solid rgba(26,107,107,.1);
+    }
+    .req-list li:last-child { border-bottom:none; padding-bottom:0; }
+    .req-list li:first-child { padding-top:0; }
+    .req-list li::before { content:none; }
+
+    /* Info box */
+    .info-box {
+      background:rgba(26,107,107,.06);
+      border:1px solid rgba(26,107,107,.18);
+      border-radius:1rem;
+      padding:1.8rem 2rem;
+      margin:2rem 0;
+    }
+    .info-box-title {
+      font-size:.72rem; letter-spacing:.12em; text-transform:uppercase;
+      color:var(--teal); font-weight:500; margin-bottom:1rem;
+    }
+
+    /* Divider */
+    .divider { border:none; border-top:1px solid var(--border); margin:2.5rem 0; }
+
+    /* Takeaways */
+    .takeaways {
+      background:var(--ink);
+      border-radius:1.2rem;
+      padding:2.5rem 2.5rem 2rem;
+      margin-top:3rem;
+      position:relative; overflow:hidden;
+    }
+    .takeaways::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:3px;
+      background:linear-gradient(90deg,var(--teal),var(--gold));
+    }
+    .takeaways-title { font-family:var(--serif); font-size:1.5rem; font-weight:400; color:#e8ede9; margin-bottom:.4rem; }
+    .takeaways-sub { font-size:.82rem; color:rgba(232,237,233,.45); margin-bottom:2rem; }
+    .takeaway-item {
+      display:flex; gap:1.2rem; align-items:flex-start;
+      margin-bottom:1.5rem; padding-bottom:1.5rem;
+      border-bottom:1px solid rgba(255,255,255,.07);
+    }
+    .takeaway-item:last-child { margin-bottom:0; padding-bottom:0; border-bottom:none; }
+    .tk-num {
+      font-family:var(--serif);
+      font-size:1.8rem; font-weight:600;
+      color:var(--teal2); line-height:1;
+      flex-shrink:0; width:2.2rem; text-align:right;
+    }
+    .tk-title { font-size:.92rem; font-weight:500; color:#e8ede9; margin-bottom:.3rem; }
+    .tk-desc { font-size:.83rem; color:rgba(232,237,233,.55); line-height:1.65; margin:0; }
+
+    /* Citation */
+    .citation-box {
+      margin-top:3rem;
+      padding:1.4rem 1.8rem;
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:.9rem;
+      font-size:.78rem; color:var(--muted);
+      line-height:1.65;
+    }
+    .citation-box strong { color:var(--ink); }
+
+    @media(max-width:640px) {
+      .stats-row { grid-template-columns:1fr 1fr; }
+      .post-hero { padding:3.5rem 5vw 3rem; }
+      .pull-quote, .mid-cta { padding:1.4rem 1.5rem; }
+      .takeaways { padding:1.8rem 1.5rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-brand">Pratibha Yadav, PhD</a>
+  <a href="index.html#blog" class="nav-back">← Back to Blog</a>
+</nav>
+
+<!-- HERO -->
+<div class="post-hero">
+  <div class="hero-inner">
+    <div class="post-meta-top">
+      <span class="post-tag">Agentic AI</span>
+      <span class="post-tag">Grant Funding</span>
+      <span class="post-tag">Academic Research</span>
+      <span class="sep">·</span>
+      <span class="post-date">May 2025</span>
+      <span class="sep">·</span>
+      <span class="post-read">7 min read</span>
+    </div>
+    <h1>How Agentic AI is Quietly <em>Impacting</em> the Foundations of Academic Research and Grant Funding</h1>
+    <p class="post-subtitle">Two recent studies, read side by side, reveal something both exciting and deeply alarming about where AI agents are taking academic science — and what researchers, funders, and institutions need to do about it.</p>
+    <div class="author-row">
+      <div class="author-avatar">PY</div>
+      <div>
+        <div class="author-name">Pratibha Yadav, PhD</div>
+        <div class="author-title">Science Communication Consultant · Barcelona</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE -->
+<div class="post-wrap">
+
+  <!-- OPENING SCENARIO -->
+  <div class="post-section">
+    <div class="scenario-box">
+      <p>A researcher sits down to apply for a major grant. Instead of spending weeks agonising over every word, they feed their published work, the funder's criteria, and the texts of recently funded grants into an AI agent. Within minutes, they have ten polished, fully formatted proposals to choose from. The agent has already reviewed the literature, framed the methodology, and optimised the narrative for the specific funding panel.</p>
+      <p>Meanwhile, across the same university, a colleague's agent is doing the same thing. Multiply that by every researcher in every institution globally. Welcome to the grant-funding crisis that's already here.</p>
+    </div>
+
+    <p>Recently I came across two interesting literature pieces that pull back the curtain on what is happening at the intersection of agentic AI and academic science. What motivated me to write this blog was that while one article throws light on agentic AI and scholarly research, another one talks about agentic AI and research grants. When read together, they paint a picture that is exciting and at the same time deeply alarming.</p>
+  </div>
+
+  <hr class="divider"/>
+
+  <!-- SECTION 1 -->
+  <div class="post-section">
+    <div class="section-label">The Core Tension</div>
+    <h2 class="section-h2">Power <em>Without Guardrails</em></h2>
+
+    <p>Agentic AI is not just a smarter chatbot. It is a fundamentally different class of tool. As Jaradeh and Auer define it in <a href="https://ceur-ws.org/Vol-4065/paper13.pdf" target="_blank" rel="noopener">Source 1</a>, an agentic AI system <em>"iterates between natural-language reasoning with external actions taking API calls, executing code, and retrieving new documents, while iteratively revising its action plan."</em> To put it in a nutshell — it plans, it acts, it learns from what it finds, and it keeps going until the goal is met. With minimal human input.</p>
+
+    <p>This capability is transforming the two most foundational activities in academic science: how research is <strong>discovered and synthesised</strong>, and how funding to do that research is <strong>applied for and awarded</strong>.</p>
+
+    <p>On the research side, the promise is genuinely extraordinary. But on the funding side, the numbers tell their own story. A 2026 analysis by Rees and Wilsdon (<a href="https://www.nature.com/articles/d41586-026-01297-y" target="_blank" rel="noopener">Source 2</a>), drawing on data from 12 major funding bodies across Australia, Belgium, Canada, China, Spain, the UK, and the EU, found that every single one of those funders saw increases in grant application volumes between 2022 and 2025.</p>
+
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-n">14%</div>
+        <div class="stat-l">Rise in postdoctoral fellowship applications at the British Academy</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-n">142%</div>
+        <div class="stat-l">Increase in EU MSCA fellowship applications</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-n">5%</div>
+        <div class="stat-l">EU MSCA applications below quality threshold by 2025</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-n">20%</div>
+        <div class="stat-l">That same threshold in 2018 — four times higher</div>
+      </div>
+    </div>
+
+    <p>More proposals. Higher quality. Harder to differentiate. Grant reviewers are now being asked to make what Rees and Wilsdon describe as "largely arbitrary choices" about who to fund. This has a direct impact on the researcher in a more than ever shrinking funding ecosystem across the globe.</p>
+  </div>
+
+  <hr class="divider"/>
+
+  <!-- SECTION 2 -->
+  <div class="post-section">
+    <div class="section-label">The Genuine Upside</div>
+    <h2 class="section-h2">What AI Agents <em>Can Actually Do</em> for Your Research</h2>
+
+    <p>Let's talk about the genuine benefits, because they are substantial.</p>
+
+    <p>Jaradeh and Auer's research describes what they call "agentic deep search": autonomous agents that can formulate queries, harvest evidence from heterogeneous databases, evaluate source quality, and synthesise structured outputs. Systems like Elicit can rank and summarise hundreds of abstracts for evidence synthesis. Open-source tools automate significant portions of PRISMA-style systematic reviews. Patent prior-art searches that once took specialist teams can now be conducted in hours. Bibliometric trend analysis pipelines can classify thousands of papers to surface emerging research directions before they become mainstream.</p>
+
+    <p>For the working researcher, this matters. The hours you currently spend on the early-stage grind of literature searching are genuinely compressible. That time could be invested into the original thinking, the creative hypothesis, the experimental design — the things that AI agents, despite their power, still cannot do.</p>
+
+    <p>But moving to the critical aspect, Jaradeh and Auer catalogue some serious failure modes that every researcher deploying these tools needs to understand before they trust the output.</p>
+  </div>
+
+  <hr class="divider"/>
+
+  <!-- SECTION 3 -->
+  <div class="post-section">
+    <div class="section-label">Critical Risks</div>
+    <h2 class="section-h2">Things That <em>Can Go Wrong</em></h2>
+
+    <div class="failure-grid">
+      <div class="failure-card">
+        <div class="failure-num">1</div>
+        <div>
+          <div class="failure-title">Paywall blindness</div>
+          <p class="failure-desc">Agents can only access what they can access. Because they have no legal right to bypass subscriptions, they systematically over-sample open-access content. Bibliometric analyses confirm a 44% open-access bias in AI-retrieved citations. If the key paper in your field sits behind a JSTOR or Elsevier paywall, your agent probably doesn't know it exists.</p>
+        </div>
+      </div>
+      <div class="failure-card">
+        <div class="failure-num">2</div>
+        <div>
+          <div class="failure-title">Context limits</div>
+          <p class="failure-desc">A systematic review's appendix can exceed 100,000 tokens. Model performance degrades as context stretches, with research showing sigmoid-like decay curves beyond 32,000 tokens. Your agent may be confidently summarising a document it cannot fully hold in mind.</p>
+        </div>
+      </div>
+      <div class="failure-card">
+        <div class="failure-num">3</div>
+        <div>
+          <div class="failure-title">Privacy exposure</div>
+          <p class="failure-desc">If your research involves sensitive human data — such as genomic sequences, patient notes, proprietary datasets — routing it through third-party AI endpoints can breach GDPR or institutional data governance frameworks.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mid-cta">
+      <p>"Use AI agents to compress the grind. Use your brain for the insight."</p>
+    </div>
+  </div>
+
+  <hr class="divider"/>
+
+  <!-- SECTION 4 -->
+  <div class="post-section">
+    <div class="section-label">The Funding Side</div>
+    <h2 class="section-h2">What is Actually <em>Changing</em> for Grant Applicants</h2>
+
+    <p>And be aware that funders are adapting. The UK Medical Research Council reinstated face-to-face interviews for all shortlisted applicants in early 2026, explicitly because of AI-augmented proposals.</p>
+
+    <p>The NIH has capped individual submissions at six per year.</p>
+
+    <p>Track record verification, portfolio assessments, and interview-based evaluation are coming back into fashion precisely because they are AI-resistant signals of genuine scientific thinking.</p>
+
+    <p>Your long-term career case rests on your ideas, your track record, and your collaborations. No agent can fake that. Build the real thing, use AI to amplify it, and make sure every output you put your name on is one you can defend, verify, and own.</p>
+  </div>
+
+  <hr class="divider"/>
+
+  <!-- SECTION 5 -->
+  <div class="post-section">
+    <div class="section-label">What Needs to Change</div>
+    <h2 class="section-h2">Rebuilding Systems for <em>an AI-Native World</em></h2>
+
+    <p>Both research articles converge on a similar insight: the systems we have for funding, for peer review, for research synthesis were built for a pre-AI world. They need to be rebuilt, not patched.</p>
+
+    <p>For research agents to be academically trustworthy, Jaradeh and Auer identify eight non-negotiable requirements. The most actionable of these are:</p>
+
+    <div class="info-box">
+      <div class="info-box-title">Requirements for trustworthy research agents</div>
+      <ul class="req-list">
+        <li><strong>Verifiability and traceability:</strong> every claim must link to a stable, auditable source — a DOI, a PubMed ID, a patent number.</li>
+        <li><strong>Ethical and bias mitigation:</strong> agents must actively counter the tendency to over-represent English-language, high-impact, majority-demographic research. Bias-aware prompting has been shown to recover approximately 12% more non-English clinical trials compared with standard keyword filters.</li>
+        <li><strong>Seamless workflow integration:</strong> tools must plug into existing academic infrastructure — Zotero, arXiv, Crossref.</li>
+        <li><strong>Researcher-controlled narrative scope:</strong> agents need defined boundaries, so a cancer biology review doesn't drift into plant genomics.</li>
+        <li><strong>Peer-reviewed source constraints:</strong> adding impact-factor filters and peer-review flags reduces noise by 35% without hurting recall.</li>
+      </ul>
+    </div>
+
+    <p>For funding systems, Rees and Wilsdon advocate for a shift from proposal-quality evaluation to person-quality evaluation: track record verification, interviews, portfolio-based assessments.</p>
+  </div>
+
+  <hr class="divider"/>
+
+  <!-- FORK IN THE ROAD -->
+  <div class="post-section">
+    <div class="section-label">The Bigger Picture</div>
+    <h2 class="section-h2">The <em>Fork in the Road</em></h2>
+
+    <div class="pull-quote">
+      <p>"We stand at a fork in the road. One path turns LLMs' autonomy into an academic enhancer, reducing months of literature search into hours while still elevating the rigor of the scientific method. The other path, if unchecked, would broadcast misinformation at machine speed."</p>
+      <cite>— Jaradeh &amp; Auer (2025)</cite>
+    </div>
+
+    <!-- INFOGRAPHIC -->
+    <svg viewBox="0 0 680 340" xmlns="http://www.w3.org/2000/svg"
+         style="width:100%;max-width:680px;display:block;margin:2rem auto;border-radius:1rem;overflow:visible;"
+         font-family="'DM Sans',sans-serif" aria-label="Fork in the road infographic">
+
+      <!-- Background -->
+      <rect width="680" height="340" rx="14" fill="#f6f3ee"/>
+
+      <!-- Centre label: TODAY -->
+      <circle cx="340" cy="200" r="36" fill="#0d1b2a"/>
+      <text x="340" y="197" text-anchor="middle" fill="#e8ede9" font-size="10" font-weight="500" letter-spacing="1">TODAY</text>
+      <text x="340" y="211" text-anchor="middle" fill="rgba(232,237,233,.55)" font-size="9">AI is here</text>
+
+      <!-- LEFT PATH line -->
+      <path d="M 304 180 Q 180 120 110 70" stroke="#1a6b6b" stroke-width="2.5" fill="none" stroke-dasharray="0"/>
+      <!-- RIGHT PATH line -->
+      <path d="M 376 180 Q 500 120 570 70" stroke="#b85c38" stroke-width="2.5" fill="none" stroke-dasharray="6 4"/>
+
+      <!-- STEM line down -->
+      <line x1="340" y1="236" x2="340" y2="290" stroke="#0d1b2a" stroke-width="2" opacity=".25"/>
+
+      <!-- LEFT BOX: Good path -->
+      <rect x="18" y="20" width="230" height="130" rx="10" fill="#ffffff" stroke="#1a6b6b" stroke-width="1.5"/>
+      <rect x="18" y="20" width="230" height="6" rx="10" fill="#1a6b6b"/>
+      <!-- Icon circle -->
+      <circle cx="50" cy="68" r="16" fill="rgba(26,107,107,.12)"/>
+      <text x="50" y="74" text-anchor="middle" font-size="16">✅</text>
+      <text x="75" y="60" fill="#1a6b6b" font-size="11" font-weight="600">Path A · AI as Enhancer</text>
+      <line x1="75" y1="66" x2="232" y2="66" stroke="rgba(26,107,107,.2)" stroke-width="1"/>
+      <text x="75" y="84" fill="#2e3d40" font-size="9.5">Transparent, auditable systems</text>
+      <text x="75" y="99" fill="#2e3d40" font-size="9.5">Human oversight at every step</text>
+      <text x="75" y="114" fill="#2e3d40" font-size="9.5">Rigor of science preserved</text>
+      <text x="75" y="129" fill="#2e3d40" font-size="9.5">Funders reward real ideas</text>
+      <!-- Badge -->
+      <rect x="28" y="118" width="110" height="22" rx="5" fill="rgba(26,107,107,.1)"/>
+      <text x="83" y="133" text-anchor="middle" fill="#1a6b6b" font-size="9" font-weight="500">SUSTAINABLE OUTCOME</text>
+
+      <!-- RIGHT BOX: Bad path -->
+      <rect x="432" y="20" width="230" height="130" rx="10" fill="#ffffff" stroke="#c8973a" stroke-width="1.5" stroke-dasharray="6 3"/>
+      <rect x="432" y="20" width="230" height="6" rx="10" fill="#c8973a"/>
+      <!-- Icon circle -->
+      <circle cx="464" cy="68" r="16" fill="rgba(200,151,58,.12)"/>
+      <text x="464" y="74" text-anchor="middle" font-size="16">⚠️</text>
+      <text x="489" y="60" fill="#b85c38" font-size="11" font-weight="600">Path B · Unchecked Race</text>
+      <line x1="489" y1="66" x2="648" y2="66" stroke="rgba(200,151,58,.3)" stroke-width="1"/>
+      <text x="489" y="84" fill="#2e3d40" font-size="9.5">Homogenised, AI-optimised grants</text>
+      <text x="489" y="99" fill="#2e3d40" font-size="9.5">Peer review loses meaning</text>
+      <text x="489" y="114" fill="#2e3d40" font-size="9.5">Misinformation at machine speed</text>
+      <text x="489" y="129" fill="#2e3d40" font-size="9.5">Best ideas go unfunded</text>
+      <!-- Badge -->
+      <rect x="442" y="118" width="110" height="22" rx="5" fill="rgba(200,151,58,.1)"/>
+      <text x="497" y="133" text-anchor="middle" fill="#b85c38" font-size="9" font-weight="500">SYSTEM BREAKDOWN</text>
+
+      <!-- BOTTOM: What decides the path -->
+      <rect x="120" y="255" width="440" height="68" rx="10" fill="#0d1b2a"/>
+      <text x="340" y="277" text-anchor="middle" fill="rgba(232,237,233,.5)" font-size="9" letter-spacing="1.5">WHAT DECIDES THE PATH</text>
+      <text x="200" y="298" text-anchor="middle" fill="#7ecece" font-size="9.5">Governance &amp; policy</text>
+      <text x="340" y="298" text-anchor="middle" fill="#7ecece" font-size="9.5">Institutional will</text>
+      <text x="476" y="298" text-anchor="middle" fill="#7ecece" font-size="9.5">Human oversight</text>
+      <!-- Dots between -->
+      <circle cx="268" cy="295" r="2" fill="rgba(232,237,233,.25)"/>
+      <circle cx="406" cy="295" r="2" fill="rgba(232,237,233,.25)"/>
+
+      <!-- Arrow tips on paths -->
+      <polygon points="107,68 117,63 117,73" fill="#1a6b6b"/>
+      <polygon points="573,68 563,63 563,73" fill="#b85c38"/>
+
+    </svg>
+
+    <p>The same fork applies to funding systems. Either we build AI-native academic infrastructure — with transparency, auditability, and human oversight at its core — or we allow the race-to-the-bottom dynamics of optimised, homogenised proposals to hollow out what peer review and scientific funding is actually supposed to do: identify and support the best ideas.</p>
+  </div>
+
+  <hr class="divider"/>
+
+  <!-- TAKEAWAYS -->
+  <div class="takeaways">
+    <div class="takeaways-title">Take-away Messages</div>
+    <div class="takeaways-sub">For researchers, grant applicants, funders, and science communicators</div>
+
+    <div class="takeaway-item">
+      <div class="tk-num">01</div>
+      <div>
+        <div class="tk-title">AI agents are a tool, not a shortcut to your scientific identity</div>
+        <p class="tk-desc">Your ideas, track record, and collaborations are what funders and peers ultimately evaluate. No agent can build that for you. Use AI to amplify what you have already earned — not to substitute for it.</p>
+      </div>
+    </div>
+
+    <div class="takeaway-item">
+      <div class="tk-num">02</div>
+      <div>
+        <div class="tk-title">The grant system is already responding — be ready</div>
+        <p class="tk-desc">Interviews, portfolio assessments, and application caps are returning because funders need AI-resistant signals of genuine scientific thinking. If you are not prepared to defend your proposal in conversation, the proposal itself may not be enough.</p>
+      </div>
+    </div>
+
+    <div class="takeaway-item">
+      <div class="tk-num">03</div>
+      <div>
+        <div class="tk-title">Know what your agent cannot see</div>
+        <p class="tk-desc">A 44% open-access bias in AI-retrieved citations is not a minor footnote — it is a systematic gap in your evidence base. Treat AI-generated literature reviews as a starting point, not a finished product.</p>
+      </div>
+    </div>
+
+    <div class="takeaway-item">
+      <div class="tk-num">04</div>
+      <div>
+        <div class="tk-title">Governance and infrastructure must catch up with capability</div>
+        <p class="tk-desc">The tools exist. The research is clear. What is needed now is the institutional will to act — on verifiability standards, on bias mitigation, and on funding evaluation frameworks — before the system becomes unworkable.</p>
+      </div>
+    </div>
+
+    <div class="takeaway-item">
+      <div class="tk-num">05</div>
+      <div>
+        <div class="tk-title">Science communicators have a role to play here</div>
+        <p class="tk-desc">As AI reshapes how research is discovered, synthesised, and funded, the ability to communicate science clearly and credibly becomes more valuable, not less. The signal that cuts through the noise is authentic human expertise — and that still needs to be communicated well.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CITATION -->
+  <div class="citation-box">
+    <strong>Sources referenced in this post:</strong><br/><br/>
+    Jaradeh &amp; Auer (2025). "Deep Research in the Era of Agentic AI: Requirements and Limitations for Scholarly Research." <a href="https://ceur-ws.org/Vol-4065/paper13.pdf" target="_blank" rel="noopener">ceur-ws.org/Vol-4065/paper13.pdf</a><br/><br/>
+    Rees &amp; Wilsdon (2026). "Could agentic AI topple grant-funding systems?" <em>Nature.</em> <a href="https://doi.org/10.1038/d41586-026-01297-y" target="_blank" rel="noopener">doi.org/10.1038/d41586-026-01297-y</a><br/><br/>
+    <em>This blog post is an independent commentary based on the findings of the above publications. All interpretations and opinions expressed are my own.</em>
+  </div>
+
+</div>
+
+<!-- CALENDLY FLOATING BAR -->
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+<div id="booking-bar" style="
+  position:fixed; bottom:0; left:0; right:0; z-index:999;
+  background:#0d1b2a;
+  border-top:3px solid #1a6b6b;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:.85rem 5vw; gap:1rem; flex-wrap:wrap;
+  box-shadow:0 -4px 24px rgba(0,0,0,.18);
+  font-family:'DM Sans',sans-serif;
+">
+  <div style="display:flex; align-items:center; gap:.9rem;">
+    <div style="width:36px;height:36px;border-radius:50%;flex-shrink:0;
+      background:rgba(26,107,107,.4);display:flex;align-items:center;
+      justify-content:center;font-size:1rem;">📅</div>
+    <div>
+      <div style="font-size:.82rem;font-weight:500;color:#e8ede9;">Let's talk about your project</div>
+      <div style="font-size:.72rem;color:rgba(232,237,233,.5);">Free 30-min discovery call · Grant writing, publishing &amp; outreach</div>
+    </div>
+  </div>
+  <div style="display:flex;align-items:center;gap:.7rem;">
+    <button onclick="openCalendly()" style="
+      background:#1a6b6b;color:#fff;border:none;cursor:pointer;
+      padding:.6rem 1.5rem;border-radius:2rem;
+      font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:500;
+      white-space:nowrap;">Book a Free Call →</button>
+    <button onclick="dismissBar()" style="
+      background:none;border:none;cursor:pointer;
+      color:rgba(232,237,233,.35);font-size:1.2rem;padding:.3rem;">✕</button>
+  </div>
+</div>
+
+<script>
+  function openCalendly() {
+    Calendly.initPopupWidget({ url: 'https://calendly.com/YOUR-USERNAME/30min' });
+    return false;
+  }
+  function dismissBar() {
+    document.getElementById('booking-bar').style.display = 'none';
+    sessionStorage.setItem('barDismissed', 'true');
+  }
+  if (sessionStorage.getItem('barDismissed')) {
+    document.getElementById('booking-bar').style.display = 'none';
+  }
+</script>
+
+</body>
+</html>
