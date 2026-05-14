@@ -924,7 +924,7 @@
     </div>
   </div>
   <div style="display:flex;align-items:center;gap:.7rem;">
-    <button onclick="openCalendly()" style="
+    <button onclick="openCalendly(); gtag('event', 'calendly_click', {'page': document.title});" style="
       background:#1a6b6b;color:#fff;border:none;cursor:pointer;
       padding:.6rem 1.5rem;border-radius:2rem;
       font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:500;
