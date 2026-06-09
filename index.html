@@ -823,19 +823,35 @@
       </div>
     </div>
 
-    <!-- Google Form embed -->
-    <div style="background:white; border-radius:1.2rem; overflow:hidden;
-                box-shadow:0 24px 64px rgba(0,0,0,.4);">
-      <!-- ✏️ Replace the src URL below with your Google Form embed URL -->
-      <<iframe 
-        src="https://docs.google.com/forms/d/e/1FAIpQLSfF3Aa0Gc0-c1wXLWjTr43YcZyd3HOmVssZ7vnSAPmWP_GhhQ/viewform?embedded=true" 
-        width="640"
-        height="723"
-        frameborder="0" 
-        marginheight="0" 
-        marginwidth="0"
-        Loading form…
-      </iframe>
+    <!-- Access button -->
+    <div style="text-align:center; padding:3rem 2rem;
+                background:rgba(255,255,255,.04);
+                border:1px solid rgba(255,255,255,.09);
+                border-radius:1.2rem;">
+      <div style="font-size:2.5rem; margin-bottom:1rem;">🎬</div>
+      <p style="color:rgba(232,237,233,.7); font-size:.97rem;
+                font-weight:300; max-width:420px; margin:0 auto 1.8rem;
+                line-height:1.7;">
+        Enter your name and email to receive instant access to the full recording.
+        Takes less than 30 seconds.
+      </p>
+      <a href="<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfF3Aa0Gc0-c1wXLWjTr43YcZyd3HOmVssZ7vnSAPmWP_GhhQ/viewform"
+         target="_blank"
+         rel="noopener"
+         style="display:inline-block;
+                background:var(--teal); color:#fff;
+                padding:.85rem 2.2rem; border-radius:2rem;
+                font-family:var(--sans); font-size:.95rem; font-weight:500;
+                letter-spacing:.03em; text-decoration:none;
+                transition:background .2s;"
+         onmouseover="this.style.background='#24908f'"
+         onmouseout="this.style.background='var(--teal)'">
+        Access the Recording →
+      </a>
+      <p style="margin-top:1.2rem; font-size:.73rem;
+                color:rgba(232,237,233,.3);">
+        Your details are stored securely and never shared with third parties.
+      </p>
     </div>
 
     <p style="margin-top:1.2rem; font-size:.75rem;
