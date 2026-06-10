@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>From Outreach to Infrastructure: Rethinking Science Communication | Pratibha Yadav</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink:    #0d1b2a;
+      --paper:  #f6f3ee;
+      --teal:   #1a6b6b;
+      --teal2:  #24908f;
+      --gold:   #c8973a;
+      --muted:  #7a8a8a;
+      --card:   #ffffff;
+      --border: rgba(26,107,107,.15);
+      --serif:  'Cormorant Garamond', Georgia, serif;
+      --sans:   'DM Sans', sans-serif;
+    }
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    body { font-family:var(--sans); background:var(--paper); color:var(--ink); line-height:1.7; }
+    a { color:var(--teal); text-decoration:none; }
+    a:hover { text-decoration:underline; }
+
+    /* ── NAV ── */
+    nav {
+      position:sticky; top:0; z-index:100;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:1rem 5vw;
+      background:rgba(246,243,238,.95);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid var(--border);
+    }
+    .nav-brand { font-family:var(--serif); font-size:1.2rem; font-weight:600; color:var(--teal); text-decoration:none; }
+    .nav-back { display:flex; align-items:center; gap:.4rem; font-size:.82rem; color:var(--muted); font-weight:500; letter-spacing:.05em; text-decoration:none; transition:color .2s; }
+    .nav-back:hover { color:var(--teal); text-decoration:none; }
+
+    /* ── HERO ── */
+    .post-hero { background:var(--ink); padding:5rem 5vw 4rem; position:relative; overflow:hidden; }
+    .post-hero::before {
+      content:''; position:absolute; inset:0;
+      background: radial-gradient(ellipse 50% 70% at 80% 50%, rgba(26,107,107,.18) 0%, transparent 70%),
+                  radial-gradient(ellipse 30% 50% at 5% 90%, rgba(200,151,58,.1) 0%, transparent 60%);
+    }
+    .hero-inner { max-width:780px; margin:0 auto; position:relative; }
+    .post-meta-top { display:flex; align-items:center; gap:1rem; flex-wrap:wrap; margin-bottom:1.8rem; }
+    .post-tag { background:rgba(26,107,107,.3); color:#7ecece; font-size:.7rem; letter-spacing:.12em; text-transform:uppercase; padding:.3rem .9rem; border-radius:2rem; font-weight:500; }
+    .sep { color:rgba(232,237,233,.2); }
+    .post-date, .post-read { font-size:.78rem; color:rgba(232,237,233,.45); }
+    .post-hero h1 { font-family:var(--serif); font-size:clamp(1.9rem,4vw,3.2rem); font-weight:300; color:#e8ede9; line-height:1.15; margin-bottom:1.4rem; }
+    .post-hero h1 em { font-style:italic; color:#7ecece; }
+    .post-subtitle { font-size:1.05rem; color:rgba(232,237,233,.65); max-width:640px; font-weight:300; line-height:1.7; margin-bottom:1.5rem; }
+    .audience-bar { background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08); border-radius:.7rem; padding:.7rem 1.1rem; font-size:.78rem; color:rgba(232,237,233,.5); margin-bottom:2rem; line-height:1.6; }
+    .audience-bar strong { color:rgba(232,237,233,.75); }
+    .author-row { display:flex; align-items:center; gap:1rem; padding-top:1.8rem; border-top:1px solid rgba(255,255,255,.08); }
+    .author-avatar { width:46px; height:46px; border-radius:50%; background:linear-gradient(135deg,var(--teal),var(--teal2)); display:flex; align-items:center; justify-content:center; font-family:var(--serif); font-size:1.1rem; font-weight:600; color:#fff; flex-shrink:0; }
+    .author-name { font-size:.92rem; color:#e8ede9; font-weight:500; }
+    .author-title { font-size:.76rem; color:rgba(232,237,233,.5); margin-top:.1rem; }
+
+    /* ── ARTICLE ── */
+    .post-wrap { max-width:720px; margin:0 auto; padding:4rem 5vw 6rem; }
+    .section-label { display:inline-flex; align-items:center; gap:.6rem; font-size:.68rem; letter-spacing:.16em; text-transform:uppercase; color:var(--gold); font-weight:500; margin-bottom:.9rem; }
+    .section-label::before { content:''; display:block; width:18px; height:1px; background:var(--gold); }
+    .section-h2 { font-family:var(--serif); font-size:clamp(1.4rem,2.5vw,1.95rem); font-weight:400; color:var(--ink); line-height:1.25; margin-bottom:1.1rem; }
+    .section-h2 em { font-style:italic; color:var(--teal); }
+    .post-section { margin-bottom:3rem; }
+    p { font-size:1rem; color:#2e3d40; line-height:1.85; font-weight:300; margin-bottom:1.2rem; }
+    p:last-child { margin-bottom:0; }
+    strong { color:var(--ink); font-weight:500; }
+    .divider { border:none; border-top:1px solid var(--border); margin:2.5rem 0; }
+
+    /* Stats row */
+    .stats-row { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin:2rem 0; }
+    .stat-card { background:var(--card); border:1px solid var(--border); border-radius:.9rem; padding:1.3rem 1rem; text-align:center; }
+    .stat-n { font-family:var(--serif); font-size:2rem; font-weight:600; color:var(--teal); line-height:1; }
+    .stat-l { font-size:.72rem; color:var(--muted); margin-top:.35rem; line-height:1.45; }
+
+    /* Pull quote */
+    .pull-quote { margin:2.5rem 0; padding:1.8rem 2.2rem; border-left:3px solid var(--gold); background:rgba(200,151,58,.06); border-radius:0 .8rem .8rem 0; }
+    .pull-quote p { font-family:var(--serif); font-size:1.2rem; font-style:italic; color:var(--ink); line-height:1.55; margin:0; font-weight:400; }
+    .pull-quote cite { display:block; margin-top:.8rem; font-size:.75rem; color:var(--muted); font-style:normal; letter-spacing:.06em; }
+
+    /* Accordion */
+    .accordion { display:flex; flex-direction:column; gap:.75rem; margin-top:1.5rem; }
+    .acc-item { border:1px solid var(--border); border-radius:1rem; background:var(--card); overflow:hidden; transition:box-shadow .25s; }
+    .acc-item.open { box-shadow:0 8px 32px rgba(13,27,42,.08); }
+    .acc-trigger { width:100%; background:none; border:none; cursor:pointer; display:flex; align-items:center; justify-content:space-between; gap:1.2rem; padding:1.4rem 1.6rem; text-align:left; font-family:var(--sans); }
+    .acc-trigger:focus-visible { outline:2px solid var(--teal); outline-offset:2px; }
+    .acc-left { display:flex; align-items:center; gap:1rem; }
+    .acc-num { font-family:var(--serif); font-size:1.5rem; font-weight:600; color:var(--teal); line-height:1; flex-shrink:0; min-width:1.6rem; }
+    .acc-title { font-size:.97rem; font-weight:500; color:var(--ink); line-height:1.4; }
+    .acc-item.open .acc-title { color:var(--teal); }
+    .acc-icon { width:28px; height:28px; border-radius:50%; flex-shrink:0; background:rgba(26,107,107,.1); display:flex; align-items:center; justify-content:center; transition:background .2s; }
+    .acc-icon svg { width:14px; height:14px; stroke:var(--teal); stroke-width:2.2; fill:none; transition:transform .3s; }
+    .acc-item.open .acc-icon { background:var(--teal); }
+    .acc-item.open .acc-icon svg { stroke:#fff; transform:rotate(180deg); }
+    .acc-body { max-height:0; overflow:hidden; transition:max-height .4s cubic-bezier(.4,0,.2,1); }
+    .acc-body-inner { padding:0 1.6rem 1.6rem; border-top:1px solid var(--border); padding-top:1.4rem; }
+    .acc-body-inner p { font-size:.95rem; color:#2e3d40; line-height:1.85; font-weight:300; margin-bottom:1rem; }
+    .acc-body-inner p:last-child { margin-bottom:0; }
+
+    /* Solutions grid */
+    .solutions-grid { display:flex; flex-direction:column; gap:1rem; margin-top:1.5rem; }
+    .sol-card { background:var(--card); border:1px solid var(--border); border-radius:1rem; padding:1.5rem 1.6rem; }
+    .sol-actor { font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; color:var(--teal); font-weight:500; margin-bottom:.5rem; }
+    .sol-text { font-size:.9rem; color:#2e3d40; line-height:1.75; font-weight:300; margin:0; text-align:justify; }
+
+    /* Numbers list */
+    .numbers-list { list-style:none; display:flex; flex-direction:column; gap:0; margin:1.5rem 0; }
+    .numbers-list li { font-size:.92rem; color:#2e3d40; line-height:1.75; padding:.75rem 0; border-bottom:1px solid var(--border); font-weight:300; display:flex; gap:.8rem; align-items:baseline; }
+    .numbers-list li:last-child { border-bottom:none; }
+    .numbers-list li::before { content:'—'; color:var(--gold); flex-shrink:0; font-weight:400; }
+
+    /* What works list */
+    .works-list { list-style:none; display:grid; grid-template-columns:1fr 1fr; gap:.8rem; margin:1.2rem 0; }
+    .works-list li { background:rgba(26,107,107,.07); border:1px solid rgba(26,107,107,.15); border-radius:.7rem; padding:.8rem 1rem; font-size:.88rem; color:var(--ink); font-weight:500; display:flex; align-items:center; gap:.6rem; }
+    .works-list li::before { content:'✓'; color:var(--teal); font-weight:600; flex-shrink:0; }
+
+    /* CTA box */
+    .cta-box { background:linear-gradient(135deg,var(--teal),var(--teal2)); border-radius:1rem; padding:2rem 2.2rem; margin:2.5rem 0; }
+    .cta-box p { color:rgba(255,255,255,.9); font-size:.97rem; line-height:1.75; margin-bottom:1.2rem; font-weight:300; }
+    .cta-box p:last-child { margin-bottom:0; }
+    .cta-btn { display:inline-block; background:#fff; color:var(--teal); padding:.65rem 1.8rem; border-radius:2rem; font-size:.88rem; font-weight:500; text-decoration:none; transition:opacity .2s; }
+    .cta-btn:hover { opacity:.88; text-decoration:none; }
+
+    /* Citation */
+    .citation-box { margin-top:3rem; padding:1.4rem 1.8rem; background:var(--card); border:1px solid var(--border); border-radius:.9rem; font-size:.78rem; color:var(--muted); line-height:1.8; }
+    .citation-box strong { color:var(--ink); }
+
+    @media(max-width:640px) {
+      .stats-row { grid-template-columns:1fr 1fr; }
+      .works-list { grid-template-columns:1fr; }
+      .post-hero { padding:3.5rem 5vw 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-brand">Pratibha Yadav, PhD</a>
+  <a href="index.html#blog" class="nav-back">← Back to Blog</a>
+</nav>
+
+<!-- HERO -->
+<div class="post-hero">
+  <div class="hero-inner">
+    <div class="post-meta-top">
+      <span class="post-tag">Science Policy</span>
+      <span class="post-tag">Research Infrastructure</span>
+      <span class="post-tag">Science Communication</span>
+      <span class="sep">·</span>
+      <span class="post-date">June 2025</span>
+      <span class="sep">·</span>
+      <span class="post-read">9 min read</span>
+    </div>
+    <h1>From Outreach to Infrastructure: <em>Rethinking Science Communication</em></h1>
+    <p class="post-subtitle">Five peer-reviewed papers. Four countries. One collective message: science communication is not working well enough — and the reasons are structural, not individual.</p>
+    <div class="audience-bar">
+      <strong>Written for:</strong> Science and research institutes, NGOs, government science bodies, education policy makers, research funders, science communication trainers and educators
+    </div>
+    <div class="author-row">
+      <div class="author-avatar">PY</div>
+      <div>
+        <div class="author-name">Pratibha Yadav, PhD</div>
+        <div class="author-title">Science Communication Consultant · Barcelona</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE -->
+<div class="post-wrap">
+
+  <!-- OPENING -->
+  <div class="post-section">
+    <p>Every few years, a cluster of research papers lands on a topic in close enough succession that together they begin to say something you cannot easily dismiss. That moment has arrived for science communication.</p>
+    <p>Between 2023 and 2026, five peer-reviewed papers across four journals explored this issue from different angles. Their research covered the UK, the USA, and Argentina, and used methods ranging from large-scale surveys to programme evaluation and longitudinal national analysis. But despite those differences, they all arrive at a similar conclusion.</p>
+    <p>Science communication is not working as well as it should. The reasons are structural, not individual. And fixing it requires building infrastructure, not just issuing encouragement.</p>
+    <p>This blog post brings those five papers together. It is aimed specifically at the people who work at the system level — in science policy, in research funding, in the training and professional development of science communicators, in NGOs and public institutions with a mandate to improve the public understanding of science. If that is you, what follows is relevant to your work.</p>
+  </div>
+
+  <hr class="divider"/>
+
+  <!-- SECTION 1: THE PARADOX -->
+  <div class="post-section">
+    <div class="section-label">The Starting Point</div>
+    <h2 class="section-h2">The Paradox We Need to <em>Start With</em></h2>
+
+    <p>Having worked internationally in diverse sectors, I have seen researchers produce work that genuinely matters and then watched it disappear into journals that no one outside the field ever reads. The five papers I am drawing on here confirm, with data, what I have observed on the ground for years.</p>
+
+    <p>Data from a 2026 editorial in Nature Physics sets the frame for everything that follows:</p>
+
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-n">77%</div>
+        <div class="stat-l">of the public trust scientists (Edelman Trust Barometer, 2024)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-n">45%</div>
+        <div class="stat-l">of the same respondents say scientists cannot communicate with the public</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-n">48%</div>
+        <div class="stat-l">of EU respondents feel scientists spend insufficient time explaining their work</div>
+      </div>
+    </div>
+
+    <p>Furthermore, the study points out that public knowledge of scientific topics has actually <strong>declined since 2021</strong>, despite science being more present in public discourse than at any point in history.</p>
+
+    <div class="pull-quote">
+      <p>The raw material of public trust is there, but the communication infrastructure to build on it is not. What we have is high institutional trust sitting on low communicative capacity.</p>
+    </div>
+
+    <p>In the current media environment — defined by deliberate disinformation, collapsing attention spans, and an endless supply of credible-sounding content generated by AI tools optimised for engagement over accuracy — that combination is a genuine societal risk.</p>
+    <p>This blog is an attempt to collectively document these risks, diagnose their causes, and crucially provide evidence-based guidance on how to address them based on previous publications.</p>
+  </div>
+
+  <hr class="divider"/>
+
+  <!-- SECTION 2: FOUR FAILURES - ACCORDION -->
+  <div class="post-section">
+    <div class="section-label">Diagnosis</div>
+    <h2 class="section-h2">Four <em>Persistent Failures</em></h2>
+    <p>Across the five papers, four structural failures appear repeatedly enough that they must be treated as the field's core problems, not peripheral concerns. Click each to read the evidence.</p>
+
+    <div class="accordion">
+
+      <div class="acc-item" id="fail1">
+        <button class="acc-trigger" onclick="toggleAcc('fail1')" aria-expanded="false">
+          <div class="acc-left">
+            <span class="acc-num">01</span>
+            <span class="acc-title">The training infrastructure does not exist at scale</span>
+          </div>
+          <div class="acc-icon"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <p>Lack of formal training in science communication with non-expert audiences is the most consistently cited barrier to public engagement in the international literature. This appears in a 2024 review of UK public involvement and engagement practices; in a 2025 study of US scientists in the STEM Ambassadors Program; in the 2025 national survey of Argentine researchers; and it is the central concern of both the Nature Physics editorial and Swords and colleagues' 2023 training evaluation study.</p>
+            <p>One of the most active national science communication communities in Latin America — CONICET with nearly 11,000 researchers in Argentina — 48% described themselves as poorly or not at all trained in communicating science to non-expert audiences. In 2007, 80% of the same population found science communication difficult or very difficult. By 2021, that had improved to 65%. An improvement, yes. But 65% of a national research workforce still finding communication difficult is not a success — rather a slow-moving failure.</p>
+            <p>Swords and colleagues provide the direct counter-evidence: a single structured training programme changed the frequency of public engagement among participants from 51% to 77% and raised confidence statistically from a median score of 5 to 8 on a nine-point scale. These gains were consistent across career stages — graduate students, postdoctoral fellows, faculty, and professional staff all improved. The capacity for change is demonstrably there. The investment to generate it is not.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item" id="fail2">
+        <button class="acc-trigger" onclick="toggleAcc('fail2')" aria-expanded="false">
+          <div class="acc-left">
+            <span class="acc-num">02</span>
+            <span class="acc-title">The wrong model is still dominant</span>
+          </div>
+          <div class="acc-icon"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <p>Staus, Risien and Cho's study makes an argument that should be foundational for everyone working in this space: the deficit model — the assumption that public disengagement from science results from insufficient knowledge, and that scientists' job is to fill that gap through explanation — is both theoretically wrong and empirically counterproductive.</p>
+            <p>Public perception of science, the evidence shows, is shaped far more strongly by culture, identity, values, and trust than by factual knowledge. This is not a radical claim in the science communication literature — it has been made consistently since at least the early 2000s. It is, however, a claim that the vast majority of science communication training programmes, public engagement events, and institutional outreach activities continue to ignore in practice. Most scientists who communicate publicly still lecture. Most communication training programmes still focus on how to explain clearly, not on how to listen authentically, build trust over time, or connect through shared values.</p>
+            <p>The STEMAP model asks scientists to begin from their own impact identity, identify focal groups with shared interests, immerse themselves in those communities, and co-design engagement. This model produced measurably different outcomes from standard presentation-based outreach. Twelve of the fourteen participants described the relationship-building process as one of the most valuable professional experiences of their careers.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item" id="fail3">
+        <button class="acc-trigger" onclick="toggleAcc('fail3')" aria-expanded="false">
+          <div class="acc-left">
+            <span class="acc-num">03</span>
+            <span class="acc-title">Institutions don't count the right things</span>
+          </div>
+          <div class="acc-icon"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <p>The academic evaluation system — promotion, tenure, grant allocation, annual review — is still built primarily around research outputs, citations, teaching, and grant income. Public engagement, in most institutions globally, occupies at best a marginal scoring position in that system, and at worst none at all.</p>
+            <p>The consequences are predictable and documented. Eberl and Cruickshank note that for most UK scientists, public engagement is conducted voluntarily, outside normal working hours, with little or no central support. Staus and colleagues found that the tension between participants' desire to do more engagement and their professional obligations — specifically, the absence of tenure credit for engagement activities — was one of the most significant barriers to sustained behaviour change after STEMAP training.</p>
+            <p>Argentina's experience provides the evidence that changing this works. Levin and Kreimer found that CONICET introduced formal scoring of public communication activities into career evaluations, counting for 3% to 7% of the total score depending on the research area. After that change, the career-stage gap in communication activity dropped sharply — from 28 percentage points to just 4. Communication has become part of what researchers at every level do as a matter of course.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item" id="fail4">
+        <button class="acc-trigger" onclick="toggleAcc('fail4')" aria-expanded="false">
+          <div class="acc-left">
+            <span class="acc-num">04</span>
+            <span class="acc-title">The Sagan Effect is still operating</span>
+          </div>
+          <div class="acc-icon"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <p>Named after Carl Sagan's well-documented professional penalties for public engagement, the Sagan Effect is the cultural belief that scientists who communicate publicly are somehow less rigorous, or that outreach diminishes standing among peers. This effect continues to shape institutional culture in ways that deter engagement.</p>
+            <p>The Nature Physics editorial explicitly addresses this, noting that "academia is struggling to shake off the Sagan Effect" even though Sagan's academic output was comparable to that of colleagues who were admitted to the bodies that rejected him. Levin and Kreimer suggest that in Argentina, the formal inclusion of public communication in evaluation criteria has contributed to a mitigation of the Sagan Effect — though they note it cannot be determined with certainty. Jensen et al., cited across this literature, found empirically that scientists who engage with society perform better academically, not worse. This is the opposite of what the Sagan Effect predicts.</p>
+            <p>The conclusion from the evidence base is that the Sagan Effect will not dissolve passively. It requires deliberate institutional action: explicit recognition of engagement in promotion criteria, visible senior-researcher examples of valued engagement, and framing by institutional leaders that positions science communication as contribution, not distraction.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <hr class="divider"/>
+
+  <!-- INFOGRAPHIC: What Training Changes -->
+  <div class="post-section">
+    <div class="section-label">Evidence in Numbers</div>
+    <h2 class="section-h2">What <em>Structured Training</em> Actually Changes</h2>
+    <p>The data from Swords et al. and Levin & Kreimer together make the strongest empirical case for investment in training and policy. These are not estimates — they are peer-reviewed findings.</p>
+
+    <!-- INFOGRAPHIC: clean HTML layout, no overlap possible -->
+    <div style="background:#ffffff; border:1px solid var(--border); border-radius:1.2rem;
+                overflow:hidden; margin:2rem 0;">
+
+      <!-- Header -->
+      <div style="background:var(--ink); padding:1rem 1.5rem;
+                  display:flex; align-items:center; justify-content:space-between;
+                  flex-wrap:wrap; gap:.5rem;">
+        <span style="font-size:.7rem; letter-spacing:.14em; text-transform:uppercase;
+                     color:#7ecece; font-weight:500;">What the Evidence Shows Changes</span>
+        <span style="font-size:.68rem; color:rgba(232,237,233,.4);
+                     font-style:italic;">Peer-reviewed findings</span>
+      </div>
+
+      <!-- Column labels -->
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr;
+                  padding:.6rem 1.5rem; background:#f0ede8;
+                  border-bottom:1px solid var(--border);">
+        <span style="font-size:.65rem; letter-spacing:.1em; text-transform:uppercase;
+                     color:var(--muted); font-weight:500;">Metric</span>
+        <span style="font-size:.65rem; letter-spacing:.1em; text-transform:uppercase;
+                     color:var(--muted); font-weight:500; text-align:center;">Before → After</span>
+        <span style="font-size:.65rem; letter-spacing:.1em; text-transform:uppercase;
+                     color:var(--muted); font-weight:500; text-align:right;">Source</span>
+      </div>
+
+      <!-- Row 1 -->
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr;
+                  align-items:center; padding:1.2rem 1.5rem;
+                  border-bottom:1px solid var(--border); gap:1rem;">
+        <div>
+          <div style="font-size:.88rem; font-weight:500; color:var(--ink);
+                      line-height:1.4; margin-bottom:.2rem;">
+            Engagement with non-expert audiences
+          </div>
+          <div style="font-size:.72rem; color:var(--muted);">
+            After one structured training programme
+          </div>
+        </div>
+        <div style="display:flex; align-items:center; justify-content:center;
+                    gap:.8rem; flex-wrap:wrap;">
+          <span style="font-family:'Cormorant Garamond',serif; font-size:1.8rem;
+                       font-weight:600; color:rgba(26,107,107,.45);
+                       line-height:1;">51%</span>
+          <span style="color:var(--gold); font-size:1.1rem; font-weight:300;">→</span>
+          <span style="font-family:'Cormorant Garamond',serif; font-size:1.8rem;
+                       font-weight:600; color:var(--teal); line-height:1;">77%</span>
+        </div>
+        <div style="text-align:right; font-size:.72rem; color:var(--muted);
+                    font-style:italic; line-height:1.5;">
+          Swords et al.<br/>2023
+        </div>
+      </div>
+
+      <!-- Row 2 -->
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr;
+                  align-items:center; padding:1.2rem 1.5rem;
+                  border-bottom:1px solid var(--border);
+                  background:rgba(26,107,107,.03); gap:1rem;">
+        <div>
+          <div style="font-size:.88rem; font-weight:500; color:var(--ink);
+                      line-height:1.4; margin-bottom:.2rem;">
+            Communicator confidence
+          </div>
+          <div style="font-size:.72rem; color:var(--muted);">
+            Median score on a 9-point scale
+          </div>
+        </div>
+        <div style="display:flex; align-items:center; justify-content:center;
+                    gap:.8rem; flex-wrap:wrap;">
+          <span style="font-family:'Cormorant Garamond',serif; font-size:1.8rem;
+                       font-weight:600; color:rgba(26,107,107,.45);
+                       line-height:1;">5/9</span>
+          <span style="color:var(--gold); font-size:1.1rem; font-weight:300;">→</span>
+          <span style="font-family:'Cormorant Garamond',serif; font-size:1.8rem;
+                       font-weight:600; color:var(--teal); line-height:1;">8/9</span>
+        </div>
+        <div style="text-align:right; font-size:.72rem; color:var(--muted);
+                    font-style:italic; line-height:1.5;">
+          Swords et al.<br/>2023
+        </div>
+      </div>
+
+      <!-- Row 3 -->
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr;
+                  align-items:center; padding:1.2rem 1.5rem; gap:1rem;">
+        <div>
+          <div style="font-size:.88rem; font-weight:500; color:var(--ink);
+                      line-height:1.4; margin-bottom:.2rem;">
+            Career-stage gap in public communication
+          </div>
+          <div style="font-size:.72rem; color:var(--muted);">
+            Percentage point gap, senior vs. junior researchers
+          </div>
+        </div>
+        <div style="display:flex; align-items:center; justify-content:center;
+                    gap:.8rem; flex-wrap:wrap;">
+          <span style="font-family:'Cormorant Garamond',serif; font-size:1.8rem;
+                       font-weight:600; color:#b85c38; line-height:1;">28 pp</span>
+          <span style="color:var(--gold); font-size:1.1rem; font-weight:300;">→</span>
+          <span style="font-family:'Cormorant Garamond',serif; font-size:1.8rem;
+                       font-weight:600; color:var(--teal); line-height:1;">4 pp</span>
+        </div>
+        <div style="text-align:right; font-size:.72rem; color:var(--muted);
+                    font-style:italic; line-height:1.5;">
+          Levin &amp; Kreimer<br/>2025
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div style="background:#f0ede8; padding:.6rem 1.5rem;
+                  border-top:1px solid var(--border);">
+        <span style="font-size:.68rem; color:var(--muted); font-style:italic;">
+          pp = percentage points. All values from peer-reviewed primary research.
+        </span>
+      </div>
+
+    </div>
+  </div>
+
+  <hr class="divider"/>
+
+  <!-- SECTION 3: SOLUTIONS -->
+  <div class="post-section">
+    <div class="section-label">Solutions</div>
+    <h2 class="section-h2">What Works and <em>Who Needs to Do It</em></h2>
+    <p>The five papers are, collectively, unusually concrete about solutions. The following are evidence-based recommendations drawn directly from the research, organised by actor.</p>
+
+    <div class="solutions-grid">
+
+      <div class="sol-card">
+        <div class="sol-actor">Research Funders</div>
+        <p class="sol-text">Include public engagement strategy as a scored element of grant applications and pair that requirement with accessible training. This ensures that researchers can meet these criteria meaningfully, not as a box-ticking exercise. Levin and Kreimer's data suggest that formal policy requirements, when combined with supportive infrastructure, have measurable positive effects on behaviour. Requirements without support produce compliance without impact.</p>
+      </div>
+
+      <div class="sol-card">
+        <div class="sol-actor">Universities and Research Institutions</div>
+        <p class="sol-text">Include public communication activities as scoreable criteria in promotion and annual review processes. Create institutional broker roles — dedicated staff who maintain sustained relationships with community focal groups. This reduces the individual time burden and builds institutional memory that outlasts individual researchers' contracts. Embed communication training in doctoral programmes as a standard component, not an elective.</p>
+      </div>
+
+      <div class="sol-card">
+        <div class="sol-actor">Science Communication Training Organisations</div>
+        <p class="sol-text">Move beyond the deficit model in programme design. Train scientists to listen before they communicate, to identify shared values before they design activities, and to build relationships before they present findings. The evidence shows this produces better outcomes. Focus explicitly on confidence-building as the mechanism of sustained behaviour change. Swords et al.'s data shows that self-efficacy — not just skill — is what converts training into sustained engagement.</p>
+      </div>
+
+      <div class="sol-card">
+        <div class="sol-actor">Government Science Bodies and Policy Makers</div>
+        <p class="sol-text">Treat public science communication as an element of national science policy, subject to measurement, reporting, and strategic investment. CONICET's model in Argentina — formalising public communication in evaluation criteria, creating institutional infrastructure, and tracking longitudinal change — provides a replicable policy framework.</p>
+      </div>
+
+      <div class="sol-card">
+        <div class="sol-actor">NGOs and Community Organisations</div>
+        <p class="sol-text">Position yourselves as partners in the focal group model, not as passive recipients of science communication. The STEMAP approach creates genuine co-creation between scientists and community groups. That requires community organisations to be willing and equipped to engage on those terms — which may itself require support, facilitation, and investment in the relationship infrastructure.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <hr class="divider"/>
+
+  <!-- SECTION 4: THE NUMBERS -->
+  <div class="post-section">
+    <div class="section-label">Summary</div>
+    <h2 class="section-h2">The Numbers Worth <em>Remembering</em></h2>
+    <p>If you leave this post with one page of notes, make it this:</p>
+
+    <ul class="numbers-list">
+      <li>77% of the public trust scientists, but 45% say scientists can't communicate with them</li>
+      <li>48% of EU respondents feel scientists don't spend enough time explaining their work</li>
+      <li>Public knowledge of science has declined since 2021, despite record volume of science communication</li>
+      <li>48% of Argentine national research council scientists consider themselves poorly trained in science communication</li>
+      <li>After structured training: engagement with non-expert audiences rose from 51% to 77% (p&lt;0.0001)</li>
+      <li>After structured training: confidence in communication rose from median 5 to median 8 out of 9</li>
+      <li>When career evaluation included public communication: career-stage gap shrank from 28 to 4 percentage points</li>
+      <li>12 of 14 scientists in the STEMAP programme found relationship-based engagement among their most valuable professional experiences</li>
+    </ul>
+
+    <p>These are not estimates. They are peer-reviewed findings from primary research. Together, they make the strongest possible case that science communication is not a soft, discretionary, values-based concern. It is a measurable, trainable, infrastructure-dependent function of a healthy research system. And the systems we have built are not, currently, performing it well enough.</p>
+  </div>
+
+  <hr class="divider"/>
+
+  <!-- SECTION 5: TAKEAWAY -->
+  <div class="post-section">
+    <div class="section-label">The Takeaway</div>
+    <h2 class="section-h2">Five Papers. One <em>Collective Message.</em></h2>
+
+    <p>Different countries, different methods, different disciplines, different journals. One conclusion: science communication is not working well enough. The failure is structural — inadequate training, the wrong underlying model, institutions that count the wrong things, and a cultural stigma — the Sagan Effect — that punishes the very behaviour that evidence shows is beneficial.</p>
+
+    <p>But this is also the most important thing the five papers say, and it does not always get said loudly enough: <strong>the evidence for what works is clear.</strong></p>
+
+    <ul class="works-list">
+      <li>Training works</li>
+      <li>Changing evaluation criteria works</li>
+      <li>Relationship-building models work</li>
+      <li>Institutional brokers work</li>
+    </ul>
+
+    <p>In Argentina, a deliberate national-level policy investment has already moved the needle — from 72% to 80% of researchers engaging publicly, collapsed the career-stage gap from 28 to 4 percentage points, and generated a generation of younger researchers who have internalised science communication as simply part of what scientists do.</p>
+
+    <p>That is not an impossible utopia. It is a documented recent history. And it was produced not by the goodwill of individual scientists, but by the policy decisions of institutions that chose to treat science communication as infrastructure rather than afterthought.</p>
+
+    <p>The infrastructure can be built. We know how to build it. The question is whether the people reading this are ready to start.</p>
+
+    <p>India is already moving in the right direction, but the shift is still incomplete. The DST's NCSTC mandate makes clear that science communication is meant to serve the public, not sit on the margins, and ANRF now creates a timely policy opening to embed communication more firmly into research culture. If ANRF's funding, review, and partnership frameworks begin to treat communication as a measurable part of research impact, the effect could be substantial. For agriculture and extension, the same logic applies to ICAR and KVKs: communication cannot remain an informal add-on if public-facing science is expected to work at scale.</p>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-box">
+    <p>If you are working on science communication strategy, researcher training, or outreach programme design in your institution, I work with research organisations and NGOs to build exactly this infrastructure.</p>
+    <a href="index.html#contact" class="cta-btn">Get in touch →</a>
+  </div>
+
+  <!-- CITATION -->
+  <div class="citation-box">
+    <strong>Sources referenced in this post:</strong><br/><br/>
+    1. Nature Physics Editorial (2026) <a href="https://doi.org/10.1038/s41567-026-03323-2" target="_blank" rel="noopener">doi:10.1038/s41567-026-03323-2</a><br/>
+    2. Eberl &amp; Cruickshank, JEM (2024) <a href="https://doi.org/10.1084/jem.20240268" target="_blank" rel="noopener">doi:10.1084/jem.20240268</a><br/>
+    3. Swords et al., JMBE (2023) <a href="https://doi.org/10.1128/jmbe.00037-23" target="_blank" rel="noopener">doi:10.1128/jmbe.00037-23</a><br/>
+    4. Staus, Risien &amp; Cho, JCOM (2025) <a href="https://doi.org/10.22323/2.24010803" target="_blank" rel="noopener">doi:10.22323/2.24010803</a><br/>
+    5. Levin &amp; Kreimer, JCOM (2025) <a href="https://doi.org/10.22323/147720250924051437" target="_blank" rel="noopener">doi:10.22323/147720250924051437</a><br/><br/>
+    <em>This blog post is an independent commentary based on the findings of the above publications. All interpretations and opinions expressed are my own.</em>
+  </div>
+
+</div>
+
+<!-- CALENDLY FLOATING BAR -->
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<div id="booking-bar" style="position:fixed;bottom:0;left:0;right:0;z-index:999;background:#0d1b2a;border-top:3px solid #1a6b6b;display:flex;align-items:center;justify-content:space-between;padding:.85rem 5vw;gap:1rem;flex-wrap:wrap;box-shadow:0 -4px 24px rgba(0,0,0,.18);font-family:'DM Sans',sans-serif;">
+  <div style="display:flex;align-items:center;gap:.9rem;">
+    <div style="width:36px;height:36px;border-radius:50%;flex-shrink:0;background:rgba(26,107,107,.4);display:flex;align-items:center;justify-content:center;font-size:1rem;">📅</div>
+    <div>
+      <div style="font-size:.82rem;font-weight:500;color:#e8ede9;">Let's talk about your project</div>
+      <div style="font-size:.72rem;color:rgba(232,237,233,.5);">Free 20-min discovery call · Grant writing, publishing &amp; outreach</div>
+    </div>
+  </div>
+  <div style="display:flex;align-items:center;gap:.7rem;">
+    <button onclick="openCalendly(); gtag('event', 'calendly_click', {'page': document.title});" style="background:#1a6b6b;color:#fff;border:none;cursor:pointer;padding:.6rem 1.5rem;border-radius:2rem;font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:500;white-space:nowrap;">Book a Free Call →</button>
+    <button onclick="dismissBar()" style="background:none;border:none;cursor:pointer;color:rgba(232,237,233,.35);font-size:1.2rem;padding:.3rem;">✕</button>
+  </div>
+</div>
+<script>
+  function openCalendly() {
+    Calendly.initPopupWidget({ url: 'https://calendly.com/YOUR-USERNAME/20min' });
+    return false;
+  }
+  function dismissBar() {
+    document.getElementById('booking-bar').style.display = 'none';
+    sessionStorage.setItem('barDismissed', 'true');
+  }
+  if (sessionStorage.getItem('barDismissed')) {
+    document.getElementById('booking-bar').style.display = 'none';
+  }
+
+
+</script>
+
+<script>
+  function toggleAcc(id) {
+    const item = document.getElementById(id);
+    const body = item.querySelector('.acc-body');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.acc-item').forEach(i => {
+      i.classList.remove('open');
+      i.querySelector('.acc-body').style.maxHeight = '0';
+      i.querySelector('.acc-trigger').setAttribute('aria-expanded', 'false');
+    });
+    if (!isOpen) {
+      item.classList.add('open');
+      body.style.maxHeight = body.scrollHeight + 'px';
+      item.querySelector('.acc-trigger').setAttribute('aria-expanded', 'true');
+    }
+  }
+</script>
+
+</body>
+</html>
