@@ -323,25 +323,25 @@
     }
 
     /* ── WHY WORK WITH ME ────────────────────────────────── */
-    #why {
-      background: linear-gradient(135deg, #0d1b2a 0%, #12363a 100%);
-      color:#e8ede9;
+        #why {
+      background: var(--paper);
+      color: var(--ink);
     }
-    #why .sec-h2 { color:#e8ede9; }
-    #why .sec-lead { color:rgba(232,237,233,.6); }
+    #why .sec-h2 { color:var(--ink); }
+    #why .sec-lead { color:var(--muted); }
     #why .sec-eyebrow { color:var(--gold); }
     #why .sec-eyebrow::before { background:var(--gold); }
     .why-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1.2rem; }
     .why-card {
-      background:rgba(255,255,255,.05);
-      border:1px solid rgba(255,255,255,.09);
+      background: var(--card);
+      border:1px solid var(--border);
       border-radius:1rem; padding:1.8rem;
-      transition: background .25s;
+      transition: box-shadow .25s;
     }
-    .why-card:hover { background:rgba(255,255,255,.08); }
+    .why-card:hover { box-shadow: 0 8px 28px rgba(13,27,42,.09); }
     .why-icon { font-size:1.6rem; margin-bottom:.8rem; }
-    .why-title { font-family:var(--serif); font-size:1.15rem; font-weight:600; color:#e8ede9; margin-bottom:.4rem; }
-    .why-desc { font-size:.84rem; color:rgba(232,237,233,.6); line-height:1.65; }
+    .why-title { font-family:var(--serif); font-size:1.15rem; font-weight:600; color:var(--ink); margin-bottom:.4rem; }
+    .why-desc { font-size:.84rem; color:var(--muted); line-height:1.65; }
 
     /* ── BLOG ────────────────────────────────────────────── */
     #blog { background: var(--paper); }
@@ -533,7 +533,7 @@
       Helping Researchers and Institutions<br>Get Funded, Published, and Recognised
     </h1>
     <p class="hero-sub fade-in">
-      PhD & science communicator with global experience across academia, industry, and international research organisations. Helping researchers and organisations communicate, secure fund, and amplify their science.
+      PhD & science communicator with global experience across academia, industry, and international research organisations. Helping researchers and organisations communicate, secure funding, and amplify their science.
     </p>
     <div class="hero-btns fade-in">
       <a href="#services" class="btn-primary">Explore Services</a>
@@ -561,9 +561,9 @@
       <div class="hcard-title">Science and Outreach Communication Consultancy</div>
       <div class="hcard-sub">Empowering researchers, institutions, and companies to tell their scientific story.</div>
       <div class="hcard-pills">
-        <span class="pill">Grant Writing</span>
-        <span class="pill">Publication Support</span>
-        <span class="pill">Outreach Models</span>
+        <span class="pill">Research Writing & Grants</span>
+        <span class="pill">Research Visibility</span>
+        <span class="pill">Coalition Facilitation</span>
         <span class="pill">EU Funding</span>
         <span class="pill">Indian Grants</span>
         <span class="pill">Stakeholder Engagement</span>
@@ -1047,10 +1047,7 @@
       </p>
     </div>
 
-    <p style="margin-top:1.2rem; font-size:.75rem;
-              color:rgba(232,237,233,.35); text-align:center;">
-      Your details are stored securely and never shared with third parties.
-    </p>
+    
 
   </div>
 </section>
@@ -1341,7 +1338,7 @@
         <label for="service">Service of Interest</label>
         <select id="service" name="service">
           <option value="">Select a service…</option>
-          <option>Grant Writing Support</option>
+          <option>Research Writing & Grants</option>
           <option>Research Visibility and Strategic Outreach</option>
           <option>Coalition Facilitation</option>
           <option>General Enquiry</option>
