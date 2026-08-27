@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Science Behind Failed Collaborations | Pratibha Yadav</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #0d1b2a;
+      --teal:   #1a6b6b;
+      --gold:   #c8973a;
+      --cream:  #faf8f4;
+      --white:  #ffffff;
+      --border: #e8e2d9;
+      --text:   #1c1c1c;
+      --muted:  #5a5a5a;
+      --light-teal: #e8f3f3;
+      --light-gold: rgba(200,151,58,0.08);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      font-size: 17px;
+      line-height: 1.8;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+    }
+    .nav-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+    .nav-back {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--gold);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: opacity 0.2s;
+    }
+    .nav-back:hover { opacity: 0.75; }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--navy);
+      padding: 4rem 2rem 3.5rem;
+      text-align: center;
+    }
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .tag {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: rgba(200,151,58,0.12);
+      border: 1px solid rgba(200,151,58,0.35);
+      padding: 0.28rem 0.75rem;
+      border-radius: 20px;
+    }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.9rem, 4.5vw, 3rem);
+      font-weight: 500;
+      line-height: 1.22;
+      color: var(--white);
+      max-width: 800px;
+      margin: 0 auto 1.25rem;
+    }
+    .hero h1 em { color: var(--gold); font-style: italic; }
+    .hero-sub {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.65);
+      max-width: 620px;
+      margin: 0 auto 1.5rem;
+      line-height: 1.65;
+    }
+    .hero-meta {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.42);
+      letter-spacing: 0.04em;
+    }
+    .hero-meta span { margin: 0 0.45rem; }
+
+    /* ── LAYOUT ── */
+    .article-wrap {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 3rem 1.75rem 5rem;
+    }
+
+    /* ── AUTHOR BOX ── */
+    .author-box {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.1rem 1.4rem;
+      margin-bottom: 2.5rem;
+    }
+    .author-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+    .author-text strong {
+      display: block;
+      font-size: 0.9rem;
+      color: var(--navy);
+    }
+    .author-text span {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    /* ── BODY TEXT ── */
+    .body p {
+      margin-bottom: 1.35rem;
+      color: var(--text);
+    }
+
+    /* ── SECTION HEADINGS ── */
+    .body h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.75rem;
+      font-weight: 500;
+      color: var(--navy);
+      margin: 2.75rem 0 0.8rem;
+      padding-bottom: 0.45rem;
+      border-bottom: 1.5px solid var(--border);
+    }
+    .body h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.22rem;
+      font-weight: 600;
+      color: var(--teal);
+      margin: 2rem 0 0.5rem;
+    }
+
+    /* ── DIVIDER ── */
+    hr.section-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2.5rem 0;
+    }
+
+    /* ── CALLOUT / EVIDENCE BOX ── */
+    .callout {
+      background: var(--light-teal);
+      border-top: 3px solid var(--teal);
+      border-radius: 0 0 8px 8px;
+      padding: 1.25rem 1.5rem;
+      margin: 1.75rem 0;
+    }
+    .callout-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 0.6rem;
+    }
+    .callout p {
+      font-size: 0.95rem;
+      color: var(--navy);
+      line-height: 1.7;
+      margin-bottom: 0.6rem;
+    }
+    .callout .callout-source {
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-style: italic;
+      margin-bottom: 0 !important;
+    }
+
+    /* ── STAT ROW ── */
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+      gap: 1rem;
+      margin: 1.75rem 0;
+    }
+    .stat-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--teal);
+      border-radius: 0 0 8px 8px;
+      padding: 1.1rem 1rem;
+    }
+    .stat-card .stat-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 500;
+      color: var(--navy);
+      line-height: 1;
+      margin-bottom: 0.35rem;
+    }
+    .stat-card .stat-desc {
+      font-size: 0.82rem;
+      color: var(--text);
+      line-height: 1.45;
+      margin-bottom: 0.4rem;
+    }
+    .stat-card .stat-source {
+      font-size: 0.7rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    /* ── TABLE ── */
+    .data-table-wrap {
+      overflow-x: auto;
+      margin: 1.5rem 0;
+    }
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+    .data-table th {
+      background: var(--navy);
+      color: var(--white);
+      padding: 0.65rem 1rem;
+      text-align: left;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+    .data-table td {
+      padding: 0.65rem 1rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+      line-height: 1.55;
+    }
+    .data-table tr:nth-child(even) td { background: rgba(250,248,244,0.6); }
+    .data-table tr:last-child td { border-bottom: none; }
+    .table-source {
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-style: italic;
+      margin-top: 0.4rem;
+      margin-bottom: 1.25rem;
+    }
+
+    /* ── BULLET LIST ── */
+    .body ul {
+      list-style: none;
+      padding: 0;
+      margin: 0.75rem 0 1.35rem;
+    }
+    .body ul li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      padding: 0.45rem 0;
+      border-bottom: 0.5px solid rgba(232,226,217,0.5);
+      font-size: 0.96rem;
+      line-height: 1.65;
+    }
+    .body ul li:last-child { border-bottom: none; }
+    .body ul li::before {
+      content: "→";
+      color: var(--teal);
+      font-weight: 600;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    /* ── NUMBERED POINTS ── */
+    .numbered-point {
+      margin: 1.5rem 0;
+    }
+    .numbered-point h3 {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+    .point-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--teal);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    /* ── CTA BLOCK ── */
+    .cta-block {
+      background: var(--navy);
+      border-radius: 12px;
+      padding: 2.25rem 2rem;
+      text-align: center;
+      margin: 2.5rem 0;
+    }
+    .cta-block h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.45rem;
+      font-weight: 500;
+      color: var(--white);
+      margin-bottom: 0.75rem;
+    }
+    .cta-block p {
+      font-size: 0.94rem;
+      color: rgba(255,255,255,0.68);
+      max-width: 480px;
+      margin: 0 auto 1.25rem;
+      line-height: 1.65;
+    }
+    .cta-block a.cta-btn {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--navy);
+      font-weight: 600;
+      font-size: 0.88rem;
+      letter-spacing: 0.03em;
+      padding: 0.7rem 1.75rem;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .cta-block a.cta-btn:hover { opacity: 0.88; }
+
+    /* ── SOURCES ── */
+    .sources {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.75rem;
+      margin-top: 2.5rem;
+    }
+    .sources h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .sources p {
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-style: italic;
+      margin-bottom: 0.6rem;
+      line-height: 1.6;
+    }
+    .sources ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .sources ul li {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.6;
+      padding: 0.4rem 0;
+      border-bottom: 0.5px solid rgba(232,226,217,0.5);
+      display: block;
+    }
+    .sources ul li::before { display: none; }
+    .sources ul li:last-child { border-bottom: none; }
+
+    /* ── CALENDLY FLOATING BAR ── */
+    .calendly-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--navy);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.85rem 2rem;
+      z-index: 200;
+      box-shadow: 0 -2px 12px rgba(0,0,0,0.2);
+    }
+    .calendly-bar-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .calendly-icon { font-size: 1.1rem; }
+    .calendly-text strong {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+    .calendly-text span {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.55);
+    }
+    .calendly-bar a.calendly-btn {
+      background: var(--gold);
+      color: var(--navy);
+      font-weight: 600;
+      font-size: 0.8rem;
+      padding: 0.55rem 1.25rem;
+      border-radius: 5px;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: opacity 0.2s;
+    }
+    .calendly-bar a.calendly-btn:hover { opacity: 0.88; }
+    .calendly-close {
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.45);
+      font-size: 1rem;
+      cursor: pointer;
+      margin-left: 1rem;
+      padding: 0.25rem;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      nav { padding: 0.9rem 1.25rem; }
+      .hero { padding: 2.5rem 1.25rem 2.25rem; }
+      .article-wrap { padding: 2rem 1.25rem 4rem; }
+      .stat-row { grid-template-columns: 1fr 1fr; }
+      .calendly-bar { padding: 0.75rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="https://ydvdrpratibha-png.github.io/pmr/index.html" class="nav-brand">Pratibha Yadav, PhD</a>
+  <a href="https://ydvdrpratibha-png.github.io/pmr/index.html#blog" class="nav-back">← Back to Blog</a>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="tags">
+    <span class="tag">Coalition Facilitation</span>
+    <span class="tag">India-EU Research Corridor</span>
+    <span class="tag">Cross-Sector Partnerships</span>
+  </div>
+  <h1>The Science Behind Failed Collaborations: <em>Why Academia and Industry Keep Missing Each Other</em> and What Structurally Changes That</h1>
+  <p class="hero-sub">A strategic read for university administrators, NGO programme officers, research funders, corporate R&amp;D managers, and anyone who has sat across a table from a promising partner and watched the collaboration quietly evaporate.</p>
+  <div class="hero-meta">
+    <span>Dr. Pratibha Yadav</span>
+    <span>·</span>
+    <span>August 2026</span>
+    <span>·</span>
+    <span>12 min read</span>
+  </div>
+</header>
+
+<!-- ARTICLE -->
+<main class="article-wrap">
+
+  <div class="author-box">
+    <div class="author-avatar">PY</div>
+    <div class="author-text">
+      <strong>Pratibha Yadav, PhD</strong>
+      <span>Science Communication and Research Outreach Consultant · India-EU Research Corridor</span>
+    </div>
+  </div>
+
+  <div class="body">
+
+    <h2>The Meeting That Looks Productive but Isn't</h2>
+
+    <p>A scenario: A university researcher and a company's R&amp;D director sit across a table. Both are enthusiastic. Both see real potential in what the other is doing. By the end of the meeting, they have agreed to 'stay in touch' and 'explore opportunities to collaborate.'</p>
+
+    <p>Six months later, nothing has happened.</p>
+
+    <p>This is the standard story. And the important thing about it is that neither person did anything wrong. They were simply operating with different assumptions, different timelines, different institutional pressures and most importantly no structure to bridge any of that.</p>
+
+    <p>I have seen this play out across research institutions and NGOs in India and Europe. The enthusiasm is real on both sides. The gap is structural and it is documented, measured, and well-understood in the research literature, even if most collaboration strategies continue to ignore what that literature actually says.</p>
+
+    <p>This blog draws on twelve peer-reviewed studies and policy analyses, spanning India, the European Union, Ireland, UAE, and 137 countries globally. The blog aims to explain why these meetings keep going nowhere, why the India-EU research corridor in particular faces specific structural challenges, and what the evidence says actually changes the outcome.</p>
+
+    <hr class="section-divider"/>
+
+    <h2>Who This Is Written For and Why It Matters Now</h2>
+
+    <p>This blog is for you:</p>
+
+    <p>If you are a university administrator wondering why your institution's industry partnership MoUs are not converting into active projects.</p>
+
+    <p>If you are an NGO programme officer who has attended three networking events this year and come away with business cards but no funded collaboration.</p>
+
+    <p>If you are a researcher who has been told to 'engage with industry' without any guidance on what that actually means structurally.</p>
+
+    <p>If you are a corporate R&amp;D manager who has tried to work with an academic team and felt like you were speaking different languages probably you were, and the research explains exactly why.</p>
+
+    <p>India's ranking on the Global Innovation Index improved from 81st in 2015 to 38th in 2025. That trajectory is real. But the structural gaps in the collaboration ecosystem that sits beneath that headline number are also real. These gaps will not close only through better networking events or more MoU signings. They will close when the people responsible for building cross-sector partnerships understand the documented reasons those partnerships fail, and design against them deliberately.</p>
+
+    <hr class="section-divider"/>
+
+    <h2>The Gap Has a Name: Two Worlds, One Collaboration Goal</h2>
+
+    <p>The research literature calls it the 'orientation gap.' It is the difference between two operating systems that were never designed to talk to each other.</p>
+
+    <p>Academia runs on what sociologists of science call Mertonian norms that includes open science, peer-reviewed, methodologically rigorous research aimed at publication and knowledge expansion. A rigorous study takes months to years to complete. Success is measured in citations, grants won, and peer recognition.</p>
+
+    <p>Industry runs on commercial cycles. A product manager in a digital health company does not have eighteen months to wait for a pilot to be published in a peer-reviewed journal. They need a validated prototype and a market entry strategy, ideally by next quarter.</p>
+
+    <p>Neither logic is wrong. They are simply incompatible when both sides assume the other works the way they do and most importantly when no one has been mandated to build the bridge between them.</p>
+
+    <div class="callout">
+      <div class="callout-label">What happened in the field: the EPIC Project</div>
+      <p>Austin, May, Andrade and Jones (2020) studied five digital health SMEs collaborating with the University of Plymouth through a £600,000 ERDF-funded programme. Between March 2018 and November 2019, 21 regional SMEs contacted the academic team. 10 applied for funding. 7 received £5,000 feasibility grants. Only 1 produced a market-launched product. The primary failure pattern was consistent: industrial partners held unrealistic expectations about how much time academics could dedicate to commercial projects. The academics underestimated the urgency of their partners' commercial timeline. Neither side had a shared framework for establishing expectations before the work began.</p>
+      <p class="callout-source">Austin et al. (2020). Health Policy and Technology, 9(3). EPIC Project, University of Plymouth / ERDF, 2017–2020.</p>
+    </div>
+
+    <p>The partnerships that did work like the Online Employee Wellbeing Portal which reached market launch after 18 months were characterised by one thing: an early investment in understanding each other's constraints before agreeing on deliverables. That is not a personality trait. It is a design choice.</p>
+
+    <hr class="section-divider"/>
+
+    <h2>The Two Barriers That Kill Most Collaborations</h2>
+
+    <p>Bruneel, D'Este and Salter (2010), writing in Research Policy, provide the clearest empirical account of what stops collaborations before they start. Their analysis of 503 UK firms in publicly funded collaborative research identified two distinct barrier categories that must be addressed separately and in sequence:</p>
+
+    <ul>
+      <li><strong>Orientation barriers:</strong> Conflicting institutional missions. The academic focus on open science versus the industrial demand for fast, proprietary, commercial returns. These are cultural and values-based.</li>
+      <li><strong>Transaction barriers:</strong> Conflict over IP rights, prolonged contract negotiations, complex university regulations, and confidentiality constraints. These are procedural and legal.</li>
+    </ul>
+
+    <p>Here is what makes this particularly important for anyone designing collaboration programmes: the mechanisms that lower one type of barrier often raise the other. When a firm engages with universities across a broad range of channels such as R&amp;D, student projects, consulting, the orientation barriers decrease because familiarity builds understanding. But the same breadth of contact increases transaction barriers, because more channels lead to more complex contract and IP negotiations.</p>
+
+    <div class="callout">
+      <div class="callout-label">The Trust Finding is the only mechanism that does both</div>
+      <p>Of all tested mechanisms, TRUST specifically integrity-based and reputation-based trust, is the strongest overall mechanism. It is the only factor that significantly lowers both orientation-related and transaction-related barriers simultaneously. No other intervention achieves this.</p>
+      <p class="callout-source">Bruneel, D'Este &amp; Salter (2010). Research Policy, 39(7). Survey sample: n=503 UK firms, 19% response rate.</p>
+    </div>
+
+    <p>This matters because most institutional collaboration strategies focus on everything except trust-building. They create MoUs, organise networking events, announce funding calls, establish joint committees. These are not wrong. But they are all downstream of trust. Without it, they produce meetings that go nowhere and agreements that can do much more than.</p>
+
+    <hr class="section-divider"/>
+
+    <h2>Trust Is Not a Starting Condition Rather It Is Built in Phases</h2>
+
+    <p>O'Dwyer, Filieri and O'Malley (2023), writing in the Journal of Technology Transfer, studied the longitudinal evolution of university-industry collaborations through Science Foundation Ireland funded research centres. Their core insight is one that most collaboration guides miss entirely: different barriers emerge at different phases of a collaboration, and managing the wrong problem at the wrong time is itself a failure mode.</p>
+
+    <div class="data-table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Phase</th>
+            <th>Primary Barrier</th>
+            <th>What Enables Transition</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Embryonic</strong></td>
+            <td>Severe lack of trust; fear of knowledge leakage; high perception of poor value</td>
+            <td>Prior personal networks; reputation-based trust; low-stakes joint mapping</td>
+          </tr>
+          <tr>
+            <td><strong>Initiation</strong></td>
+            <td>Absence of IP agreement; resource-sharing feels threatening</td>
+            <td>Shared vision; preliminary MoU; equally distributed seed funding</td>
+          </tr>
+          <tr>
+            <td><strong>Engagement</strong></td>
+            <td>Managing joint activity at scale; co-location complexity</td>
+            <td>Dedicated project managers; TTO involvement; geographic proximity</td>
+          </tr>
+          <tr>
+            <td><strong>Established</strong></td>
+            <td>Sustaining momentum; preventing complacency</td>
+            <td>Integrity-based trust; institutional embeddedness; continuous knowledge exchange</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-source">Source: O'Dwyer, Filieri &amp; O'Malley (2023). Journal of Technology Transfer, 48.</p>
+
+    <p>The failure point for most collaborations is the transition between Embryonic and Initiation phase. This is the moment when enthusiasm meets the reality of IP negotiation, timelines, and administrative process. Without deliberate management of that transition, partnerships die exactly when they had the most potential.</p>
+
+    <p>This is why the sequence matters as much as the content of any collaboration agreement. Trust must be built in the Embryonic phase before formal agreements are even drafted. Introducing contracts before trust is established does not accelerate the collaboration rather it collapses it.</p>
+
+    <hr class="section-divider"/>
+
+    <h2>India's Structural Reality: Why the Gap Is More Acute Here</h2>
+
+    <p>For partnerships involving Indian research institutions, the orientation and transaction barriers described above sit inside a structural context that makes them more difficult to navigate, not less.</p>
+
+    <p>India's Gross Expenditure on R&amp;D (GERD) reached Rs. 2 lakh crores in 2020-21. But measured as a percentage of GDP, it remains stagnant at 0.6–0.7%. This figure has barely moved in a generation, and that sits far below every economy India is trying to benchmark against.</p>
+
+    <div class="data-table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Country</th>
+            <th>R&amp;D as % of GDP</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Israel</td><td>5.4%</td></tr>
+          <tr><td>United States</td><td>3.5%</td></tr>
+          <tr><td>Japan</td><td>3.3%</td></tr>
+          <tr><td>Germany</td><td>3.1%</td></tr>
+          <tr><td>China</td><td>2.4%</td></tr>
+          <tr><td><strong>India</strong></td><td><strong>0.6–0.7% (stagnant)</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-source">Source: NITI Aayog (2025a). Science &amp; Technology Division, Government of India. DST NSTMIS Database.</p>
+
+    <p>The funding structure amplifies this. In China, private sector drives 77% of R&amp;D spend. In the US, 75%. In Germany, 67%. In India, the Central Government alone drives 43.7% of GERD. Private sector industry contributes just 36.4%. When research is funded primarily by government and executed primarily in government institutes, the pathways connecting it to market application and social use are structurally thin. This is not because of any individual failure, but because the system was not designed with those pathways as a primary output.</p>
+
+    <div class="stat-row">
+      <div class="stat-card">
+        <div class="stat-number">1,815</div>
+        <div class="stat-desc">Public sector R&amp;D institutes in India across central and state systems</div>
+        <div class="stat-source">NITI Aayog (2025a)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">51%</div>
+        <div class="stat-desc">Agriculture-focused — the single largest sectoral concentration</div>
+        <div class="stat-source">NITI Aayog (2025a)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">216</div>
+        <div class="stat-desc">Researchers per million inhabitants in India</div>
+        <div class="stat-source">Narain &amp; Khushal (2024)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">0.5%</div>
+        <div class="stat-desc">Of total students enrolled at postgraduate level — the research talent feeder pool</div>
+        <div class="stat-source">Narain &amp; Khushal (2024)</div>
+      </div>
+    </div>
+
+    <p>The geographic disconnect is severe and underappreciated. Central R&amp;D labs are concentrated around Delhi's National Capital Region, while the industrial clusters they should be serving such as IT and electronics in Bangalore and Pune, manufacturing in Gujarat, pharma in Hyderabad, are physically distant. There are no functioning national databases tracking actual expenditures and outcomes of public R&amp;D institutes, making systemic impact evaluation impossible. NITI Aayog (2025a) identifies this as a critical gap: current policy tracks R&amp;D inputs (expenditure) but not R&amp;D impact outputs (jobs created, patents commercialised, regional economic value generated).</p>
+
+    <p>Research quality is concentrated in a small number of institutions such as IITs, IISc, AIIMS etc. while the vast majority of undergraduate colleges focus exclusively on teaching. Narain and Khushal (2024) document that India has only 216 researchers per million inhabitants, and postgraduate enrolment accounts for a mere 0.5% of the total student population. High-quality research and high-quality industry exist in India; the structural connective tissue between them is what is absent.</p>
+
+    <hr class="section-divider"/>
+
+    <h2>The India-EU Comparison: Closer Than It Looks, Farther Than It Should Be</h2>
+
+    <p>India's collaboration challenge is sometimes framed as uniquely developmental and a gap that advanced economies have already solved. The European evidence complicates that narrative in useful ways.</p>
+
+    <p>The largest international study of university-business cooperation, the European Commission survey of 17,410 respondents across 33 nations has found that despite the EU's Single Market, shared research infrastructure, and decades of dedicated policy, collaboration remains deeply regional.</p>
+
+    <div class="callout">
+      <div class="callout-label">European UBC Survey talks about the geographic reality</div>
+      <p>71.7% of European businesses cooperate with universities in their own geographic region. Only 59.7% cooperate at the national level. International cooperation sits at just 18.7%. Despite digitalization, physical proximity remains the dominant driver of collaboration. R&amp;D cooperation is the most developed area and rated highly developed by 74.9% of businesses. However, curriculum co-design scores just 2.3 out of 5, and dual education 3.4. The 'easy' forms of collaboration are well-established; the deeper, more structurally significant ones are not.</p>
+      <p class="callout-source">Davey et al. (2018). The State of University-Business Cooperation in Europe. European Commission DG Education and Culture. n=17,410 respondents, 33 nations.</p>
+    </div>
+
+    <p>This matters for the India-EU corridor specifically. Indian institutions seeking European partners and European institutions seeking Indian partners are both operating against a baseline of strong regional preference. The collaboration that happens most naturally in both systems is with geographically proximate partners. Cross-continental partnership requires overcoming an additional layer of distance that does not disappear simply because both sides have internet access and mutual interest.</p>
+
+    <p>The EU's policy response to this is instructive. The European Research Council explicitly evaluates proposals on 'ground-breaking nature, ambition, and feasibility' with novelty and originality as named criteria. Marie Skłodowska-Curie Actions fund researcher mobility specifically to break down geographic insularity. Horizon Europe builds international collaboration incentives into its funding architecture. Indian funding does not yet have comparable publicly available evaluation rubrics for these dimensions this is a gap that researchers applying for co-funding across both systems encounter in practical terms.</p>
+
+    <p>Goel's (2026) econometric analysis of 137 countries over ten years provides the clearest macro-level insight on what drives collaboration internationally. The elasticity of university-industry collaboration with respect to basic research and citable documents is 0.06, exactly double the elasticity with respect to applied research and patents (0.03). Universities that invest in strong foundational research generate more collaboration than those redirected toward commercial output. Cutting basic research budgets to force commercialisation is, in Goel's data, mathematically counterproductive to the collaboration goal it is supposed to serve.</p>
+
+    <p>India's strength is in basic science and is visible in its research publication volume, now ranked 3rd globally. Hence that is therefore not the obstacle to collaboration. The obstacle is the connective infrastructure that translates that knowledge into accessible partnerships.</p>
+
+    <hr class="section-divider"/>
+
+    <h2>What the Evidence Says Actually Works</h2>
+
+    <p>Across twelve sources, three principles emerge consistently enough to treat as reliable guides rather than suggestions. These are not generic best-practice advice. They are findings grounded in data from organisations across multiple countries.</p>
+
+    <div class="numbered-point">
+      <h3><span class="point-num">1</span> Trust is infrastructure, not outcome</h3>
+      <p>The European Commission survey ranked personal relationships based on mutual trust and commitment as the highest facilitator of university-business cooperation. It is rated 7.7 out of 10 by university managers and 6.5 out of 10 by business managers. Higher than funding availability. Higher than IP clarity. Higher than government policy. The implication for anyone designing a collaboration programme: trust-building must be a deliberate, funded, time-allocated activity, not the expected byproduct of signing an MoU.</p>
+    </div>
+
+    <div class="numbered-point">
+      <h3><span class="point-num">2</span> Staged commitment, not full commitment upfront</h3>
+      <p>The EPIC project's model is an example of structural humility feasibility over development. It gives both parties a low-stakes opportunity to test whether the relationship works before either commits fully. Rybnicek and Königsgruber (2019), in their systematic review of 106 collaboration studies, found that 'prior experience with collaborative research' consistently appeared as a success factor. That experience is not built in a single large project. It is built through multiple smaller interactions that allow trust to develop incrementally.</p>
+    </div>
+
+    <div class="numbered-point">
+      <h3><span class="point-num">3</span> The presence of an intermediary changes the outcomes</h3>
+      <p>Rybnicek and Königsgruber (2019) identify 'the presence of intermediate bodies' such as technology transfer offices, knowledge brokers, independent facilitators as a critical institutional success factor. Without someone who understands both the academic and industry context and can translate between them, the two sides are left to negotiate across a cultural and linguistic divide with no common interpreter. The European Commission survey found this particularly strongly: 56% of academics stated they or a colleague always or usually initiate university-business collaboration. When the initiator is not present or not supported, collaboration does not happen.</p>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Why intermediary players matter</div>
+      <p>Davey et al. (2018) found that nearly 75% of non-collaborating academics actively work with government or societal actors. These connections already exist. What is missing is a structure that can activate them as pathways into genuine tri-sector collaboration between universities, industry, and civil society. Anchored in shared societal challenges rather than bilateral IP negotiations.</p>
+      <p class="callout-source">Davey et al. (2018). European Commission UBC Survey. n=17,410 respondents.</p>
+    </div>
+
+    <hr class="section-divider"/>
+
+    <h2>India's Policy Signals and the Implementation Gap</h2>
+
+    <p>India's policy ambition is clear and recent. The RDI Sunrise Scheme in the Interim Union Budget 2024 allocates Rs. 1 lakh crore to incentivise private-sector R&amp;D. NEP 2020's 'Professors of Practice' provision allows industry practitioners with 15+ years of experience to fill up to 10% of university teaching positions without requiring a PhD. Karnataka's Engineering Research and Development Policy offers up to 50% rent reimbursement and Rs. 20 lakh in recruitment assistance for corporate R&amp;D centres in Bengaluru. Research parks modelled on IIT Madras have been approved at nine IITs.</p>
+
+    <p>These are genuine structural interventions. What they cannot do, on their own, is build the relational infrastructure the network of people across sectors who know each other, trust each other, and have a shared language for talking about problems that neither can solve alone.</p>
+
+    <p>NITI Aayog (2025b) identifies the critical missing link explicitly: India currently has no dedicated S&amp;T Intermediary Bodies at the national level comparable to those that European research systems have built over decades. The question is whether institutions and organisations working in this space are ready to occupy that intermediary function while the formal infrastructure develops.</p>
+
+    <hr class="section-divider"/>
+
+    <h2>The Takeaway</h2>
+
+    <p>The evidence from twelve studies across three continents is consistent. Failed collaborations are not primarily caused by bad ideas, insufficient funding, or poor research quality. They are caused by:</p>
+
+    <ul>
+      <li>managed expectation gaps that were never surfaced;</li>
+      <li>trust that was expected without being built;</li>
+      <li>barriers that changed phase but were managed as though they were static; and</li>
+      <li>structural mismatches in time horizons, incentive systems, geographic concentration, and talent supply, that no single researcher or company can resolve individually.</li>
+    </ul>
+
+    <p>What this means practically: the work of collaboration begins well before any formal agreement. It begins in the conversations where you learn how a potential partner thinks, what their pressures are, and where your work genuinely intersects with their needs. Not the intersection you wish existed, but the one that actually does. In the India-EU corridor specifically, where the spatial distance compounds the cultural and institutional distance, this relational groundwork is not optional. It is the precondition for everything else.</p>
+
+    <p>India's GII rank improved from 81st to 38th in ten years. The structural conditions for better collaboration are genuinely improving. But the next phase of improvement will not come from more policy announcements. It will come from three systemic changes:</p>
+
+    <ul>
+      <li><strong>Transparency:</strong> Building a national R&amp;D outcomes database that tracks what publicly funded research actually produces not just what it costs.</li>
+      <li>Addressing the geographic disconnect between central research infrastructure and regional industrial clusters through deliberate spatial co-location policies.</li>
+      <li>Investing in the relational infrastructure and capacity building: people, programmes, and intermediary organisations that makes trust-building a systematic process rather than an individual accident.</li>
+    </ul>
+
+    <div class="cta-block">
+      <h3>Working on cross-sector partnerships in India or Europe?</h3>
+      <p>Coalition facilitation, research outreach strategy, and India-EU research corridor navigation — I work with institutions, NGOs, and research organisations at exactly this boundary. If you are building or rethinking how your organisation approaches collaboration, I would be glad to connect.</p>
+      <a href="https://ydvdrpratibha-png.github.io/pmr/index.html#contact" class="cta-btn">Book a discovery call →</a>
+    </div>
+
+    <div class="sources">
+      <h4>Sources</h4>
+      <p>All statistics drawn directly from primary sources. No data extrapolated or estimated.</p>
+      <ul>
+        <li>Austin, May, Andrade &amp; Jones (2020). Health Policy and Technology, 9(3). doi:10.1016/j.hlpt.2020.08.005</li>
+        <li>NITI Aayog (2025a). Public R&amp;D Institutes in India: Opportunities for Multisectoral and Systemic Integration. Science &amp; Technology Division, Government of India.</li>
+        <li>NITI Aayog (2025b). Pathways to Progress: Analysis and Insights into India's Innovation Story. Science &amp; Technology Division, Government of India.</li>
+        <li>Bruneel, D'Este &amp; Salter (2010). Investigating the factors that diminish the barriers to university-industry collaboration. Research Policy, 39(7). doi:10.1016/j.respol.2010.03.006</li>
+        <li>Rybnicek &amp; Königsgruber (2019). What makes industry-university collaboration succeed? Journal of Business Economics, 89. doi:10.1007/s11573-018-0916-6</li>
+        <li>Davey, Baaken, Galan-Muros &amp; Meerman (2018). The State of University-Business Cooperation in Europe. European Commission DG Education and Culture.</li>
+        <li>O'Dwyer, Filieri &amp; O'Malley (2023). Establishing successful university-industry collaborations. Journal of Technology Transfer, 48. doi:10.1007/s10961-022-09932-2</li>
+        <li>Goel, R.K. (2026). University-industry collaborations: an international perspective. Journal of Technology Transfer, 51:1625–1640.</li>
+        <li>Narain &amp; Khushal (2024). Trajectory of industry-academia collaborations in India and NEP 2020. Journal of Management and Entrepreneurship, Vol. 18, No. 2(II).</li>
+        <li>CMRIT UGC-Autonomous R&amp;D Policy (2023). CMR Institute of Technology, Bangalore.</li>
+        <li>HNB Garhwal University IPR Policy (2020). University IPR Committee Guidelines, Uttarakhand.</li>
+        <li>Mahalingam, T. (2024). Bridging the gap between academia and industry. International Journal of Business Performance Management, 25(4). doi:10.1504/IJBPM.2024.10057580</li>
+      </ul>
+    </div>
+
+  </div><!-- end .body -->
+</main>
+
+<!-- CALENDLY FLOATING BAR -->
+<div class="calendly-bar" id="calendlyBar">
+  <div class="calendly-bar-left">
+    <span class="calendly-icon">📅</span>
+    <div class="calendly-text">
+      <strong>Let's talk about your project</strong>
+      <span>Free 20-min discovery call · Grant writing, publishing &amp; outreach</span>
+    </div>
+  </div>
+  <a href="https://calendly.com/ydvpratibha" target="_blank" class="calendly-btn">Book a Free Call →</a>
+  <button class="calendly-close" onclick="document.getElementById('calendlyBar').style.display='none'" aria-label="Close">✕</button>
+</div>
+
+</body>
+</html>
